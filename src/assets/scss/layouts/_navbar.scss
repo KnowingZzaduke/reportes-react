@@ -1,35 +1,68 @@
-@use '../base/variables' as v;
-@use '../base/mixins' as m;
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
 
-.content_navbar{
-    background-color: v.$blanco;
-    .navbar{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        .content_logo{
-            img{
-                width: 6rem;
-                margin-left: 10px;
-            }
-        }
-        .content_enlaces{
-            display: flex;
-            align-items: center;
-            justify-content: end;
-            ul{
-                margin-right: 10px;
-                display: flex;
-                column-gap: 10px;
-                li{
-                    a{
-                        font-weight: 400;
-                        &:hover{
-                            cursor: pointer;
-                            text-decoration: underline;
-                        }
-                    }
-                }
-            }
-        }
+.content_navbar {
+  background-color: v.$blanco;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  .navbar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    .content_logo {
+      img {
+        width: 6rem;
+        margin-left: 10px;
+      }
     }
+    .content_enlaces-n {
+      position: fixed;
+      background-color: v.$negroOscuro;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: -30%;
+      transition: 0.100s ease;
+      height: 170px;
+      ul {
+        width: 100%;
+        li {
+          text-align: center;
+          border-radius: 5px;
+          width: 100%;
+          margin: 10px 0;
+          display: flex;
+          justify-content: center;
+          column-gap: 10px;
+          background-color: v.$azulClaro;
+          align-items: center;
+
+          a {
+            padding: 10px 0;
+            font-weight: 400;
+            &:hover {
+              cursor: pointer;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+    .content_enlaces-d {
+      top: 10%;
+      transition: .35s ease;
+    }
+    .content_toggle-abrir {
+      grid-column: 2/3;
+      grid-row: 1/2;
+      align-items: center;
+      display: flex;
+      justify-content: end;
+      svg {
+        font-size: 30px;
+        margin-right: 10px;
+      }
+    }
+  }
 }
