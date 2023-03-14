@@ -66,3 +66,34 @@
     }
   }
 }
+
+//Menú versión responsive
+@include m.desktop{
+    .content_navbar{
+        .navbar{
+            align-items: center;
+            .content_enlaces-n{
+                width: auto;
+                position: relative;
+                background-color: transparent;
+                height: auto;
+                top: 0;
+                ul{
+                    width: auto;
+                    display: flex;
+                    height: 100%;
+                    column-gap: 5px;
+                    li{
+                        background-color: transparent;
+                        column-gap: 5px;
+                        margin: 0%;
+                        width: 130px;
+                    }
+                }
+            }
+            .content_toggle-abrir{
+                display: none;
+            }
+        }
+    }
+}
