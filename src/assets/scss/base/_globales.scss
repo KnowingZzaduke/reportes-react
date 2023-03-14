@@ -1,28 +1,44 @@
-@use 'variables' as v;
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@use "variables" as v;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-*{
-    margin: 0%;
-    padding: 0%;
-    box-sizing: border-box;
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
 }
 
-
-html{
-    scroll-behavior: smooth;
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-    background: rgb(87,15,15);
-    background: linear-gradient(90deg, rgba(87,15,15,1) 0%, rgba(0,0,0,1) 35%);    
-    font-family: 'Roboto', sans-serif;
-    height: 100vh;
+body {
+  background: rgb(87, 15, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(87, 15, 15, 1) 0%,
+    rgba(0, 0, 0, 1) 35%
+  );
+  font-family: "Roboto", sans-serif;
+  height: 100vh;
+  position: relative;
 }
 
-#root{
-    height: 100%;
+.content_video-fondo {
+    position: fixed;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 105%;
+    min-height: 100%;
+    transform: translateX(calc((100% - 100vw) / 2));
+    z-index: -3;
 }
 
-ul,li{
-    list-style: none;
+#root {
+  height: 100%;
+}
+
+ul,
+li {
+  list-style: none;
 }

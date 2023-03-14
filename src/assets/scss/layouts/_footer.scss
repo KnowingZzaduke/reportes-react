@@ -1,0 +1,50 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.content_footer {
+  footer {
+    margin-top: 4rem;
+    background-color: v.$blanco;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    text-align: center;
+    .content_logo {
+      text-align: start;
+      img {
+        width: 80px;
+      }
+    }
+    .content_enlaces {
+      ul {
+        li {
+          margin-top: 1rem;
+          a {
+            &:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//Versión responsive
+@include m.desktop {
+  .content_footer {
+    footer {
+      .content_enlaces {
+        ul {
+          display: flex;
+          column-gap: 10px;
+          justify-content: end;
+          li{
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
