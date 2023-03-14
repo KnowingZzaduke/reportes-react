@@ -13,7 +13,7 @@ export function Main() {
               Aquí podras descargar el reporte correspondiente sobre la
               instalación de las bombas de agua en su edificio, con el objetivo
               de que usted tenga una constancia sobre la correcta instalación de
-              las bombas y que todo marcha a la perfección
+              las bombas y que todo marcha a la perfección.
             </p>
           </div>
         </div>
