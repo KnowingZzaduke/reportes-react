@@ -1,8 +1,9 @@
+import { Principal } from "./components/principal/Principal"
 export function App() {
 
   return (
     <>
-      <h1>Hola</h1>
+      <Principal/>
     </>
   )
 }

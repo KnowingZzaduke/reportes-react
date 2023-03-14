@@ -1,0 +1,35 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.content_navbar{
+    background-color: v.$blanco;
+    .navbar{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        .content_logo{
+            img{
+                width: 6rem;
+                margin-left: 10px;
+            }
+        }
+        .content_enlaces{
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            ul{
+                margin-right: 10px;
+                display: flex;
+                column-gap: 10px;
+                li{
+                    a{
+                        font-weight: 400;
+                        &:hover{
+                            cursor: pointer;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
