@@ -1,10 +1,11 @@
 import { FaBars, FaUserCheck, FaInfoCircle, FaPhone } from "react-icons/fa";
 import { useState } from "react";
 import Logo from "/img/Dysam.jpg";
+import { Link } from "react-router-dom";
 export function Navbar() {
   const [active, setActive] = useState(false);
-  function handleClick(){
-    setActive(!active)
+  function handleClick() {
+    setActive(!active);
   }
   return (
     <div className="content_navbar">
@@ -12,11 +13,13 @@ export function Navbar() {
         <div className="content_logo">
           <img src={Logo} className="logo"></img>
         </div>
-        <div className={`content_enlaces-n ${active ? "content_enlaces-d" : ""}`}>
+        <div
+          className={`content_enlaces-n ${active ? "content_enlaces-d" : ""}`}
+        >
           <ul>
             <li>
               <FaUserCheck />
-              <a>Iniciar sesión</a>
+              <Link to="/signin" target="_blank">Iniciar sesión</Link>
             </li>
             <li>
               <FaInfoCircle />
@@ -29,7 +32,7 @@ export function Navbar() {
           </ul>
         </div>
         <div className="content_toggle-abrir">
-          <FaBars onClick={handleClick}/>
+          <FaBars onClick={handleClick} />
         </div>
       </nav>
     </div>

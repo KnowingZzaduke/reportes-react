@@ -1,0 +1,13 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+.content_formulario {
+  form {
+    width: 50%;
+    margin: 0% auto;
+    background-color: v.$blanco;
+    border-radius: 5px;
+    img {
+      width: 100px;
+    }
+  }
+}
