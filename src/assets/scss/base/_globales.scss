@@ -28,6 +28,10 @@ body {
     z-index: -3;
 }
 
+a{
+    text-decoration: none;
+    color: v.$negroOscuro;
+}
 #root {
   height: 100%;
 }

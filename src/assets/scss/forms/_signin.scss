@@ -1,13 +1,81 @@
 @use "../base/variables" as v;
 @use "../base/mixins" as m;
 .content_formulario {
+  height: 100%;
+  width: 100%;
+  background: rgb(87, 15, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(87, 15, 15, 1) 0%,
+    rgba(0, 0, 0, 1) 35%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
   form {
-    width: 50%;
-    margin: 0% auto;
     background-color: v.$blanco;
+    box-shadow: 0 0 10px 1px v.$amarillo;
+    height: 500px;
+    display: flex;
+    width: 320px;
+    align-items: center;
+    justify-content: center;
     border-radius: 5px;
-    img {
-      width: 100px;
+    .content_all-form {
+        width: 100%;
+      .content_logo {
+        text-align: center;
+        img {
+          width: 140px;
+          padding: 5px;
+        }
+      }
+      fieldset {
+        display: flex;
+        border-style: none;
+        flex-direction: column;
+        row-gap: 20px;
+        .content_input {
+          display: flex;
+          flex-direction: column;
+          margin: 0% auto;
+          width: 80%;
+          label {
+            font-weight: 600;
+          }
+          input {
+            border-radius: 5px;
+            border: 1px solid v.$negroOscuro;
+            padding: 10px 0;
+          }
+        }
+      }
+      .content_boton {
+        text-align: center;
+        button {
+          margin: 10px 0px;
+          width: 75%;
+          padding: 10px 0;
+          border: none;
+          border-radius: 5px;
+          background-color: v.$azulClaro;
+          transition: .25s ease;
+          &:hover{
+            transform: scale(1.1);
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
+}
+
+//Versión responsive
+@include m.tablet{
+    .content_formulario{
+        form{
+            width: 500px;
+        }
+    }
+    
 }
