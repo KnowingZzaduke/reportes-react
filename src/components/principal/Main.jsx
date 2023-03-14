@@ -10,11 +10,11 @@ export function Main() {
           </div>
           <div className="content_parrafo">
             <p>
-              Aquí podras descargar el reporte correspondiente <br />
-              sobre la instalación de las bombas de agua que <br />
-              colocadas en su edificio, con el objetivo de que <br />
-              usted tenga una constancia sobre la correcta <br />
-              instalación de las bombas y que todo marcha a la <br />
+              Aquí podras descargar el reporte correspondiente 
+              sobre la instalación de las bombas de agua que 
+              colocadas en su edificio, con el objetivo de que 
+              usted tenga una constancia sobre la correcta 
+              instalación de las bombas y que todo marcha a la 
               perfección
             </p>
           </div>
