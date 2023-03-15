@@ -45,28 +45,30 @@ export function MainU() {
           <div className="content_tabla-reportes">
             <div className="content_titulo">
               <h2>Resultados de búsqueda</h2>
-              <FaSistrix/>
+              <FaSistrix />
             </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>PDF</th>
-                  <th>Observación</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>14/03/2023</td>
-                  <td>
-                    <Link>
-                      <FaFileAlt title="Pdf"/>
-                    </Link>
-                  </td>
-                  <td>Ninguna</td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="content_tabla">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>PDF</th>
+                    <th>Observación</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>14/03/2023</td>
+                    <td>
+                      <Link>
+                        <FaFileAlt title="Pdf" />
+                      </Link>
+                    </td>
+                    <td>Ninguna</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </main>

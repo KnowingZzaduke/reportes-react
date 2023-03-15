@@ -57,9 +57,9 @@
           text-align: center;
         }
         form {
-          margin-top: 2rem;
+          margin: 20px auto 0 auto;
           background-color: v.$blanco;
-          text-align: center;
+          justify-content: center;
           border-radius: 5px;
           display: flex;
           align-items: center;
@@ -99,32 +99,33 @@
             font-size: 20px;
           }
         }
-        table {
-          margin-top: 1rem;
-          background-color: v.$gris;
-          width: 100%;
-          border-collapse: collapse;
-          border-radius: 5px;
-          overflow-x: auto;
-          thead {
-            tr {
-              th {
-                border-bottom: 1px solid v.$negro;
-                padding: 10px;
+        .content_tabla {
+          table {
+            margin-top: 1rem;
+            background-color: v.$gris;
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 5px;
+            thead {
+              tr {
+                th {
+                  border-bottom: 1px solid v.$negro;
+                  padding: 10px;
+                }
               }
             }
-          }
-          tbody {
-            tr {
-              td {
-                padding: 10px;
-                text-align: center;
-                a {
-                  svg {
-                    transition: 0.25s ease;
-                    &:hover {
-                      cursor: pointer;
-                      transform: scale(1.1);
+            tbody {
+              tr {
+                td {
+                  padding: 10px;
+                  text-align: center;
+                  a {
+                    svg {
+                      transition: 0.25s ease;
+                      &:hover {
+                        cursor: pointer;
+                        transform: scale(1.1);
+                      }
                     }
                   }
                 }
@@ -154,15 +155,18 @@
   }
   .content_buscador {
     form {
-      width: 70%;
+      width: 60%;
       margin: 0% auto;
     }
   }
   .content_tabla-reportes {
-    width: 80%;
     margin: 0% auto;
     .content_titulo {
       justify-content: center;
+    }
+    .content_tabla {
+      width: 70%;
+      margin: 0% auto;
     }
   }
 }
@@ -175,10 +179,12 @@
     }
   }
   .content_tabla-reportes {
-    width: 60%;
-    margin: 0% auto;
     .content_titulo {
       justify-content: center;
+    }
+    .content_tabla {
+      width: 60%;
+      margin: 0% auto;
     }
   }
 }
