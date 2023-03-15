@@ -1,180 +1,51 @@
 @use "../base/variables" as v;
 @use "../base/mixins" as m;
 
-.content_contenido-principal {
+.content_contenido-principal-u {
   padding: 5rem 10px 0 10px;
-  main {
-    .content_info {
-      margin-top: 3rem;
-
-      .content_titulo {
-        h1 {
-          margin: 0%;
-          color: v.$blanco;
-          font-size: 50px;
-        }
-      }
-      .content_parrafo {
-        margin-top: 2rem;
-        p {
-          color: v.$blanco;
-          font-size: 20px;
-        }
-      }
-    }
-    .content_descargar-pdf {
-      display: flex;
-      flex-direction: column-reverse;
-      .content_boton {
-        text-align: center;
-        margin-top: 2rem;
-        a {
-          button {
-            padding: 10px 65px;
-            border-radius: 5px;
-            border: none;
-            color: v.$blanco;
-            background-color: v.$azulClaro;
-            transition: 0.25s ease;
-            &:hover {
-              transform: scale(1.1);
-              cursor: pointer;
-            }
-          }
-        }
-      }
-      .content_img-pdf {
-        .content_img {
-          margin-top: 2rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          img {
-            border-radius: 5px;
-          }
-          .content_small-img {
-            height: 258px;
-            display: flex;
-            align-items: end;
-            position: relative;
-            left: 10px;
-            .small_img {
-              box-shadow: 0 0 2px 1px v.$negroOscuro;
-              width: 150px;
-              height: 160px;
-              z-index: 1;
-            }
-          }
-          .big_img {
-            width: 200px;
-          }
-        }
-      }
-    }
-  }
-}
-
-//Versión responsive
-@include m.tablet {
-  .content_contenido-principal {
-    main {
-      .content_descargar-pdf {
-        .content_boton {
-          margin-top: 2rem;
-        }
-        .content_img-pdf {
-          .content_img {
-            .content_small-img {
-              height: 323px;
-              .small_img {
-                width: 200px;
-                height: 200px;
-              }
-            }
-            .big_img {
-              width: 250px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-@include m.desktop {
-  .content_contenido-principal {
-    main {
-      .content_info {
-        width: 50%;
-        text-align: start;
-      }
-      .content_descargar-pdf {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        margin-top: 2rem;
-        .content_boton {
-          text-align: start;
-          a {
-            button {
-              padding: 10px 55px;
-              border-radius: 5px;
-              border: none;
+  main{
+    margin-top: 3rem;
+    .content_instrucciones{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      .content_main-left{
+        .content_info{
+          .content_titulo {
+            h1 {
+              margin: 0%;
               color: v.$blanco;
-              background-color: v.$azulClaro;
-              transition: 0.25s ease;
-              &:hover {
-                transform: scale(1.1);
-                cursor: pointer;
-              }
+              font-size: 50px;
             }
           }
-        }
-        .content_img-pdf {
-          display: flex;
-          justify-content: start;
-          align-items: end;
-          .content_img {
-            img {
-              border-radius: 5px;
+          .content_parrafo {
+            margin-top: 2rem;
+            p {
+              color: v.$blanco;
+              font-size: 20px;
             }
-            .content_small-img {
-              height: 388px;
-              .small_img {
-                position: relative;
-                box-shadow: 0 0 2px 1px v.$negroOscuro;
-                left: 30px;
-                width: 250px;
-                height: 250px;
+          }
+          .content_pasos{
+            margin-top: 2rem;
+            ul{
+              padding-left: 15px;
+              li{
+                list-style: decimal;
+                color: v.$blanco
               }
-            }
-            .big_img {
-              width: 300px;
             }
           }
         }
       }
-    }
-  }
-}
-
-@include m.desktopXl {
-  .content_contenido-principal {
-    main{
-        .content_descargar-pdf {
-            .content_img-pdf {
-              .content_img {
-                .content_small-img {
-                    height: 452px;
-                  .small_img {
-                    width: 300px;
-                    height: 300px;
-                  }
-                }
-                .big_img {
-                  width: 350px;
-                }
-              }
-            }
+      .content_main-right{
+        .content_logo{
+          text-align: center;
+          img{
+            border: 10px;
+            box-shadow: v.$amarillo 2px 2px 10px;
+            width: 600px;
           }
+        }
+      }
     }
   }
 }
