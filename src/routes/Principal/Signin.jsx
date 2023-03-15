@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { DataContext } from "../../context/DataContext";
 import Logo from "/img/Dysam.jpg";
 export function Signin() {
+  const {datoUsuario} = useContext(DataContext)
   return (
     <div className="content_formulario">
       <form>
