@@ -1,5 +1,6 @@
 import Documentos from "/img/documentos.png";
-import { FaSistrix } from "react-icons/fa";
+import { FaSistrix, FaFileAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 export function MainU() {
   return (
     <div className="content_contenido-principal-u">
@@ -35,13 +36,17 @@ export function MainU() {
           <div className="content_buscador">
             <h2>Ingresa tu código</h2>
             <form>
-              <input type="text" />
+              <input type="text" placeholder="código" autoFocus />
               <button>
                 <FaSistrix />
               </button>
             </form>
           </div>
           <div className="content_tabla-reportes">
+            <div className="content_titulo">
+              <h2>Resultados de búsqueda</h2>
+              <FaSistrix/>
+            </div>
             <table>
               <thead>
                 <tr>
@@ -53,7 +58,11 @@ export function MainU() {
               <tbody>
                 <tr>
                   <td>14/03/2023</td>
-                  <td>Archivo</td>
+                  <td>
+                    <Link>
+                      <FaFileAlt title="Pdf"/>
+                    </Link>
+                  </td>
                   <td>Ninguna</td>
                 </tr>
               </tbody>

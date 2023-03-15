@@ -3,13 +3,11 @@
 
 .content_contenido-principal-u {
   padding: 5rem 10px 0 10px;
-  main{
+  main {
     margin-top: 3rem;
-    .content_instrucciones{
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      .content_main-left{
-        .content_info{
+    .content_instrucciones {
+      .content_main-left {
+        .content_info {
           .content_titulo {
             h1 {
               margin: 0%;
@@ -24,28 +22,163 @@
               font-size: 20px;
             }
           }
-          .content_pasos{
+          .content_pasos {
             margin-top: 2rem;
-            ul{
+            ul {
               padding-left: 15px;
-              li{
+              li {
                 list-style: decimal;
-                color: v.$blanco
+                color: v.$blanco;
+                font-size: 17px;
+                margin-top: 1rem;
               }
             }
           }
         }
       }
-      .content_main-right{
-        .content_logo{
+      .content_main-right {
+        .content_logo {
+          margin-top: 2rem;
           text-align: center;
-          img{
+          img {
             border: 10px;
             box-shadow: v.$amarillo 2px 2px 10px;
-            width: 600px;
+            width: 70%;
+            border-radius: 50%;
           }
         }
       }
+    }
+    .content_reportes {
+      margin-top: 3rem;
+      .content_buscador {
+        h2 {
+          color: v.$blanco;
+          text-align: center;
+        }
+        form {
+          margin-top: 2rem;
+          background-color: v.$blanco;
+          text-align: center;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          input {
+            border-radius: 5px;
+            padding: 5px 0;
+            margin: 5px;
+            width: 90%;
+          }
+          button {
+            border: none;
+            background-color: v.$azulClaro;
+            border-radius: 5px;
+            padding: 5px;
+            transition: 0.25s ease;
+            &:hover {
+              transform: scale(1.1);
+              cursor: pointer;
+            }
+            svg {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+      .content_tabla-reportes {
+        margin-top: 4rem;
+        .content_titulo {
+          display: flex;
+          align-items: center;
+          column-gap: 10px;
+          h2,
+          svg {
+            color: v.$blanco;
+          }
+          svg {
+            font-size: 20px;
+          }
+        }
+        table {
+          margin-top: 1rem;
+          background-color: v.$gris;
+          width: 100%;
+          border-collapse: collapse;
+          border-radius: 5px;
+          overflow-x: auto;
+          thead {
+            tr {
+              th {
+                border-bottom: 1px solid v.$negro;
+                padding: 10px;
+              }
+            }
+          }
+          tbody {
+            tr {
+              td {
+                padding: 10px;
+                text-align: center;
+                a {
+                  svg {
+                    transition: 0.25s ease;
+                    &:hover {
+                      cursor: pointer;
+                      transform: scale(1.1);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+//Versión responsive
+@include m.tablet {
+  .content_buscador {
+    form {
+      justify-content: center;
+    }
+  }
+}
+
+@include m.desktop {
+  main {
+    .content_instrucciones {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .content_buscador {
+    form {
+      width: 70%;
+      margin: 0% auto;
+    }
+  }
+  .content_tabla-reportes {
+    width: 80%;
+    margin: 0% auto;
+    .content_titulo {
+      justify-content: center;
+    }
+  }
+}
+
+@include m.desktopXl {
+  .content_buscador {
+    form {
+      width: 50%;
+      margin: 0% auto;
+    }
+  }
+  .content_tabla-reportes {
+    width: 60%;
+    margin: 0% auto;
+    .content_titulo {
+      justify-content: center;
     }
   }
 }
