@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Error } from './Error-page';
 import './assets/scss/app.scss';
 import { Signin } from './routes/Principal/Signin';
+import {Usuarios} from './routes/usuarios/Usuarios';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,7 +15,12 @@ const router = createBrowserRouter([
   {
     path: "/signin",
     element: <Signin/>
+  },
+  {
+    path: "/usuarios",
+    element: <Usuarios/>
   }
+  
 
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(

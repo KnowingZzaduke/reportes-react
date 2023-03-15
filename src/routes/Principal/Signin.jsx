@@ -19,7 +19,7 @@ export function Signin() {
             </div>
           </fieldset>
           <div className="content_boton">
-            <Link>
+            <Link to="/usuarios">
               <button>Enviar</button>
             </Link>
           </div>
