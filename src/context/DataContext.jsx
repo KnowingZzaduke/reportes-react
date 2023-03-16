@@ -1,23 +1,26 @@
 import { createContext, useState, useEffect } from "react";
-import { infoUsuario as data, infoUsuario } from "../data/user";
+import { infoUsuario as data} from "../data/user";
 export const DataContext = createContext();
 
 export function DataContextProvider(props) {
-  const [data, setData] = useState([]);
-  function datoUsuario(usuario, contraseña) {
-    setData([
+  const [infoUsuario, setInfoUsuario] = useState([]);
+  function datoUsuario(usuarioU, contraseñaU) {
+    setInfoUsuario([
       ...infoUsuario,
       {
-        usuario,
-        contraseña,
+        usuario: usuarioU,
+        contraseña: contraseñaU
       },
     ]);
   }
   useEffect(() => {
-    setData(data);
-  }, [])
+    setInfoUsuario(data);
+  }, []);
   return (
-    <DataContext.Provider value={datoUsuario}>
+    <DataContext.Provider value={{
+      infoUsuario,
+      datoUsuario
+    }}>
       {props.children}
     </DataContext.Provider>
   );
