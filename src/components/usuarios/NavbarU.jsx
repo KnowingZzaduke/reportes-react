@@ -23,7 +23,7 @@ export function NavbarU() {
     <div className="content_navbar-u">
       <nav className="navbar">
         <div className="content_logo">
-          <img src={Logo} className="logo"></img>
+          <img src={Logo} className="logo"/>
         </div>
         <div
           className={`content_enlaces-n ${active ? "content_enlaces-d" : ""}`}

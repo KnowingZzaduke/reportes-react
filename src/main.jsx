@@ -6,6 +6,7 @@ import { Error } from "./Error-page";
 import "./assets/scss/app.scss";
 import { Signin } from "./routes/Principal/Signin";
 import { Usuarios } from "./routes/usuarios/Usuarios";
+import {Admin} from "./routes/admin/Administradores";
 import { DataContextProvider } from "./context/DataContext";
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/usuarios",
     element: <Usuarios />,
+  },
+  {
+    path:  "/administradores",
+    element: <Admin/>
   }
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

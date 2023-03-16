@@ -22,7 +22,7 @@
     justify-content: center;
     border-radius: 5px;
     .content_all-form {
-        width: 100%;
+      width: 100%;
       .content_logo {
         text-align: center;
         img {
@@ -59,8 +59,8 @@
           border: none;
           border-radius: 5px;
           background-color: v.$azulClaro;
-          transition: .25s ease;
-          &:hover{
+          transition: 0.25s ease;
+          &:hover {
             transform: scale(1.1);
             cursor: pointer;
           }
@@ -68,14 +68,33 @@
       }
     }
   }
+  .content_error-n {
+    height: 0;
+    overflow: hidden;
+    transition: 0.25s ease;
+    width: 80%;
+    margin: 0% auto;
+    text-align: center;
+  }
+  .content_error-d {
+    height: 42px;
+    transition: 0.25s ease;
+    background-color: v.$rojo;
+    width: 80%;
+    margin: 0% auto;
+    margin-top: 1rem;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 5px;
+    color: v.$blanco;
+  }
 }
 
 //Versión responsive
-@include m.tablet{
-    .content_formulario{
-        form{
-            width: 500px;
-        }
+@include m.tablet {
+  .content_formulario {
+    form {
+      width: 500px;
     }
-    
+  }
 }

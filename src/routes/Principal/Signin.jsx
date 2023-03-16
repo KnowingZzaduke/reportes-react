@@ -4,35 +4,44 @@ import { DataContext } from "../../context/DataContext";
 import Logo from "/img/Dysam.jpg";
 import { useNavigate } from "react-router-dom";
 export function Signin() {
-  const { infoUsuario } = useContext(DataContext);
+  const { infoUsuario, datoUsuario } = useContext(DataContext);
   const [usuario, setUsuario] = useState("");
   const [contraseña, setContraseña] = useState("");
+  const [error, setError] = useState(false)
   const navigate = useNavigate();
-
   function handleSubmit(e) {
     e.preventDefault();
-
-    for (let i = 0; i < infoUsuario.length; i++) {
-      const valores = infoUsuario[i];
-
-      if (valores.usuario === usuario && valores.contraseña === contraseña) {
-        navigate("/usuarios");
-      } else {
-        if (
-          usuario === "" ||
-          contraseña === "" ||
-          valores.usuario !== usuario ||
-          valores.contraseña !== contraseña
-        ) {
-          Swal.fire({
-            title: "Error",
-            text: "Los datos ingresados no son válidos",
-            icon: "error",
-          });
-          setUsuario("");
-          setContraseña("");
-        }
-      }
+    if (usuario === "" || contraseña === "") {
+      Swal.fire({
+        title: "Error",
+        text: "Los datos ingresados no son válidos",
+        icon: "error",
+      });
+      setUsuario("");
+      setContraseña("");
+    } else {
+      datoUsuario(usuario, contraseña);
+      infoUsuario.forEach((e) => {
+        let usuarioData = e.usuario;
+        let contraseñaData = e.contraseña;
+        const usuarioArray = usuario.split(" ");
+        const filterUsuario = usuarioArray.filter((user) => {
+          if (
+            user.includes("@usuario") &&
+            user === usuarioData &&
+            contraseña === contraseñaData
+          ) {
+            navigate("/usuarios");
+          } else if (user.includes("@admin") && user === usuarioData) {
+            navigate("/administradores");
+          } else {
+            setError(!error)
+            setTimeout(() =>{
+              setError(false)
+            }, 2000)
+          }
+        });
+      });
     }
   }
 
@@ -65,6 +74,9 @@ export function Signin() {
           </fieldset>
           <div className="content_boton">
             <button>Enviar</button>
+          </div>
+          <div className={`content_error-n ${error ? "content_error-d" : ""}`}>
+            <p>Usuario o contraseña incorrectos</p>
           </div>
         </div>
       </form>
