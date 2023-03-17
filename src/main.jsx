@@ -8,6 +8,8 @@ import { Signin } from "./routes/Principal/Signin";
 import { Usuarios } from "./routes/usuarios/Usuarios";
 import {Admin} from "./routes/admin/Administradores";
 import { DataContextProvider } from "./context/DataContext";
+import { Bienvenida } from "./routes/admin/Bienvenida";
+import { AgregarR } from "./routes/admin/AgregarR";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,7 +26,18 @@ const router = createBrowserRouter([
   },
   {
     path:  "/administradores",
-    element: <Admin/>
+    element: <Admin/>,
+    children: [
+      {
+        path: "/administradores/bienvenida",
+        element: <Bienvenida/>
+      },
+      {
+        path : "/administradores/agregar-reportes",
+        element: <AgregarR/>
+      }
+    ]
+    
   }
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

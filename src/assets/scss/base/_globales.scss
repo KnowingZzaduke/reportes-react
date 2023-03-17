@@ -21,10 +21,11 @@ body {
     rgba(87, 15, 15, 1) 0%,
     rgba(0, 0, 0, 1) 35%
   );
+  display: flex;
+  flex-direction: column;
 }
 
 .content_video-fondo {
-  position: fixed;
   position: fixed;
   right: 0;
   bottom: 0;

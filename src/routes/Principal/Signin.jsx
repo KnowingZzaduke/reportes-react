@@ -32,8 +32,8 @@ export function Signin() {
             contraseña === contraseñaData
           ) {
             navigate("/usuarios");
-          } else if (user.includes("@admin") && user === usuarioData) {
-            navigate("/administradores");
+          } else if (user.includes("@admin") && user === usuarioData && contraseña === contraseñaData) {
+            navigate("/administradores/bienvenida")
           } else {
             setError(!error)
             setTimeout(() =>{

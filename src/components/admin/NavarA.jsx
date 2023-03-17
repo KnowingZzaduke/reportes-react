@@ -21,7 +21,7 @@ export function NavbarA() {
     setOp(!op);
   }
   return (
-    <div className="content_navbar">
+    <div className="content_navbar-a">
       <nav className="navbar">
         <div className="content_navbar-superior">
           <div className="navbar_left">
@@ -59,7 +59,7 @@ export function NavbarA() {
           <div className="content_enlaces">
             <ul>
               <li>
-                <Link>
+                <Link to="/administradores/agregar-reportes">
                   <FaFileMedical />
                   Agregar reportes
                 </Link>
