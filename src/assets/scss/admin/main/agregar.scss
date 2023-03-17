@@ -1,41 +1,86 @@
-@use '../../base/variables' as v;
-@use '../../base/mixins' as m;
+@use "../../base/variables" as v;
+@use "../../base/mixins" as m;
 
-.content_agregar-datos{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    form{
-        margin-top: 2rem;
-        background-color: v.$blanco;
-        border-radius: 5px;
-        width: 500px;
-        h2{
-            text-align: center;
-            margin: 1rem 0;
-        }
-        fieldset{
-            border-style: none;
-            .content_input{
-                margin-top: 1rem;
-                display: flex;
-                flex-direction: column;
-                label{
-                    padding: 10px 0;
-                    font-size: 20px;
-                }
-                input{
-                    padding: 10px 0;
-                    border: 1px solid v.$negro;
-                    border-radius: 5px;
-                    
-                }
-                textarea{
-                    border-radius: 5px;
-                    border: 1px solid v.$negro;
-                }
-            }
-        }
+.content_agregar-datos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 320px;
+  form {
+    background-color: v.$blanco;
+    border-radius: 5px;
+    width: 320px;
+    h2 {
+      text-align: center;
+      margin: 1rem 0;
     }
+    fieldset {
+      border-style: none;
+      .content_input {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        label {
+          padding: 10px 0;
+          font-size: 20px;
+          text-align: center;
+        }
+        input {
+          padding: 10px 0;
+          border: 1px solid v.$negro;
+          border-radius: 5px;
+          width: 95%;
+          margin: 0% auto;
+        }
+        textarea {
+          border-radius: 5px;
+          border: 1px solid v.$negro;
+          width: 95%;
+          margin: 0% auto;
+        }
+      }
+      .content_boton {
+        margin: 20px 0;
+        text-align: center;
+        button {
+          width: 95%;
+          background-color: v.$azulClaro;
+          color: v.$blanco;
+          border: none;
+          padding: 10px 0;
+          border-radius: 5px;
+          transition: 0.25s ease;
+          &:hover {
+            cursor: pointer;
+            box-shadow: 0 0 5px 1px v.$amarillo;
+          }
+        }
+      }
+    }
+  }
+}
+
+//Versión responsive
+@include m.tablet {
+  .content_agregar-datos {
+    width: 400px;
+    form {
+      width: 400px;
+    }
+  }
+}
+@include m.desktop {
+  .content_agregar-datos {
+    width: 500px;
+    form {
+      width: 500px;
+      fieldset {
+        .content_input {
+          .input_file {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
 }

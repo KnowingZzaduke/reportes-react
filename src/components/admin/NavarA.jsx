@@ -67,13 +67,13 @@ export function NavbarA() {
               <li>
                 <Link>
                   <FaTrashAlt />
-                  Agregar reportes
+                  Eliminar reportes
                 </Link>
               </li>
               <li>
                 <Link>
                   <FaGlobe />
-                  Agregar reportes
+                  Detalles reportes
                 </Link>
               </li>
             </ul>

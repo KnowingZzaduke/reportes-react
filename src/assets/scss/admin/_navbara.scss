@@ -99,11 +99,11 @@
     }
     .content_navbar-desplegable-n {
       box-shadow: 0 0 3px 0 v.$amarillo;
-      width: 200px;
+      width: 180px;
       position: fixed;
       top: 0;
       bottom: 0;
-      left: -20%;
+      left: -65%;
       background-color: v.$azulGrisClaro;
       transition: 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
       .content_cerrar {
@@ -153,4 +153,26 @@
       transition: 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
     }
   }
+}
+
+//Versión responsive
+@include m.tablet{
+  .content_navbar-a{
+    .navbar{
+      .content_navbar-desplegable-d{
+        width: 200px;
+      }
+    }
+  }
+}
+
+@include m.desktop{
+  .content_navbar-a{
+    .navbar{
+      .content_navbar-desplegable-d{
+        width: 250px;
+      }
+    }
+  }
+  
 }

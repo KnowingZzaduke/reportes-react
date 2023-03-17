@@ -1,7 +1,7 @@
 @use "../base/variables" as v;
 
 .content_footer-a {
-    margin-top: 3rem;
+  flex-shrink: 0;
   footer {
     display: flex;
     align-items: center;

@@ -1,4 +1,4 @@
-import Humans from "/img/humans.png";
+import Animation from "/video/animation.mp4";
 import { FaUsers } from "react-icons/fa";
 export function Bienvenida() {
   return (
@@ -11,8 +11,8 @@ export function Bienvenida() {
         </p>
         <FaUsers />
       </div>
-      <div className="content_img">
-        <img src={Humans} />
+      <div className="content_animacion">
+        <video src={Animation} autoPlay muted loop/>
       </div>
     </div>
   );

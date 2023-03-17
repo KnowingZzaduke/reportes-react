@@ -10,10 +10,12 @@
 html {
   scroll-behavior: smooth;
 }
+html, body{
+  height: 100%;
+}
 
 body {
   font-family: "Roboto", sans-serif;
-  height: 100vh;
   position: relative;
   background: rgb(87, 15, 15);
   background: linear-gradient(
@@ -40,10 +42,18 @@ a {
   color: v.$negroOscuro;
 }
 #root {
-  height: 100%;
+  flex: 1 0 auto;
+
 }
 
 ul,
 li {
   list-style: none;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input[type=number] { -moz-appearance:textfield; }

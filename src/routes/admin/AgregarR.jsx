@@ -1,4 +1,4 @@
-import { functions as Fc } from "../../data/request";
+import { functions as fc } from "../../data/request";
 import React, { useState } from 'react';
 
 export function AgregarR() {
@@ -12,7 +12,7 @@ export function AgregarR() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    Fc.makeReport(formulario);
+    fc.makeReport(formulario);
   };
 
   const handleInputChange = event => {
