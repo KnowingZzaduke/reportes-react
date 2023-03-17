@@ -1,0 +1,66 @@
+@use '../../base/variables' as v;
+@use '../../base/mixins' as m;
+
+.content_detalles{
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    .content_titulo{
+        width: 80%;
+        margin: 0% auto;
+        h1{
+            color: v.$blanco;
+            font-size: 50px;
+        }
+    }
+    .content_graficos{
+        display: flex;
+        flex-direction: column;
+        .content_grafico-peso-archivos{
+            div{
+                margin: 0% auto;
+            }
+            .content_descripcion{
+                text-align: center;
+                p{
+                    width: 80%;
+                    margin: 0% auto;
+                    color: v.$blanco;
+                    font-size: 20px;
+                }
+            }
+        }
+        hr{
+            width: 90%;
+            margin: 3rem auto;
+        }
+        .content_grafico-calificacion{
+            div{
+                margin: 0% auto;
+            }
+            .content_descripcion{
+                text-align: center;
+                p{
+                    width: 80%;
+                    padding-top: 1rem;
+                    margin: 0% auto;
+                    color: v.$blanco;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+
+//Versión responsive
+@include m.desktop(){
+    .content_detalles{
+        .content_graficos{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        hr{
+            display: none;
+        }
+    }
+}

@@ -11,6 +11,7 @@ import { DataContextProvider } from "./context/DataContext";
 import { Bienvenida } from "./routes/admin/Bienvenida";
 import { AgregarR } from "./routes/admin/AgregarR";
 import { EliminarR } from "./routes/admin/EliminarR";
+import { DetallesR } from "./routes/admin/DetallesR";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/administradores/eliminar-reportes",
         element: <EliminarR/>
+      },
+      {
+        path: "/administradores/detalles-reportes",
+        element: <DetallesR/>
       }
     ]
     

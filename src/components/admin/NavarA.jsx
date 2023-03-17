@@ -17,7 +17,7 @@ export function NavbarA() {
   function handleClick() {
     setMenu(!menu);
   }
-  function mostrarOp(){
+  function mostrarOp() {
     setOp(!op);
   }
   return (
@@ -34,10 +34,20 @@ export function NavbarA() {
               </div>
               <div className="opciones">
                 <div className="content_toggles-caret">
-                  <FaAngleDown className={`caret_down-d ${op ? "caret_down-n" : ""}`} onClick={mostrarOp}/>
-                  <FaAngleUp className={`caret_up-n ${op ? "caret_up-d" : ""}`} onClick={mostrarOp}/>
+                  <FaAngleDown
+                    className={`caret_down-d ${op ? "caret_down-n" : ""}`}
+                    onClick={mostrarOp}
+                  />
+                  <FaAngleUp
+                    className={`caret_up-n ${op ? "caret_up-d" : ""}`}
+                    onClick={mostrarOp}
+                  />
                 </div>
-                <div className={`content_cerrar-sesion-n ${op ? "content_cerrar-sesion-d" : ""}`}>
+                <div
+                  className={`content_cerrar-sesion-n ${
+                    op ? "content_cerrar-sesion-d" : ""
+                  }`}
+                >
                   <button>
                     <FaPowerOff />
                     Cerrar sesión
@@ -71,7 +81,7 @@ export function NavbarA() {
                 </Link>
               </li>
               <li>
-                <Link>
+                <Link to="/administradores/detalles-reportes">
                   <FaGlobe />
                   Detalles reportes
                 </Link>
