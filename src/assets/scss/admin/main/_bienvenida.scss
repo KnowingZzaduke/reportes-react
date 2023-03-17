@@ -7,6 +7,9 @@
   align-items: center;
   justify-content: center;
   main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
     .content_info {
       text-align: center;
       color: v.$blanco;

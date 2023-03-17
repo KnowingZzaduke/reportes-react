@@ -65,7 +65,7 @@ export function NavbarA() {
                 </Link>
               </li>
               <li>
-                <Link>
+                <Link to="/administradores/eliminar-reportes">
                   <FaTrashAlt />
                   Eliminar reportes
                 </Link>

@@ -4,7 +4,7 @@ export function Bienvenida() {
   return (
     <div className="content_bienvenida">
       <div className="content_info">
-        <h1>Bienvenida</h1>
+        <h1>Bienvenido/a</h1>
         <p>
           Mediante este panel podrás agregar los reportes a los diferentes
           usuarios
