@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Error } from "./Error-page";
 import "./assets/scss/app.scss";
 import { Signin } from "./routes/Principal/Signin";
+import { Signup } from "./routes/Principal/Signup";
 import { Usuarios } from "./routes/usuarios/Usuarios";
 import {Admin} from "./routes/admin/Administradores";
 import { DataContextProvider } from "./context/DataContext";
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <Error />,
+  },
+  {
+    path: "/signup",
+    element: <Signup/>
   },
   {
     path: "/signin",

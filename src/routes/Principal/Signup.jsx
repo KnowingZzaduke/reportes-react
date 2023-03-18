@@ -4,10 +4,10 @@ import { DataContext } from "../../context/DataContext";
 import Logo from "/img/Dysam.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt, FaUserShield, FaRegPaperPlane } from "react-icons/fa";
-export function Signin() {
-  const { infoUsuario, datoUsuario } = useContext(DataContext);
+export function Signup() {
   const [usuario, setUsuario] = useState("");
   const [contraseña, setContraseña] = useState("");
+  const [correo, setCorreo] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   function handleSubmit(e) {
@@ -20,38 +20,14 @@ export function Signin() {
       });
       setUsuario("");
       setContraseña("");
-    } else {
-      datoUsuario(usuario, contraseña);
-      infoUsuario.forEach((e) => {
-        let usuarioData = e.usuario;
-        let contraseñaData = e.contraseña;
-        const usuarioArray = usuario.split(" ");
-        const filterUsuario = usuarioArray.filter((user) => {
-          if (
-            user.includes("@usuario") &&
-            user === usuarioData &&
-            contraseña === contraseñaData
-          ) {
-            navigate("/usuarios");
-          } else if (
-            user.includes("@admin") &&
-            user === usuarioData &&
-            contraseña === contraseñaData
-          ) {
-            navigate("/administradores/bienvenida");
-          } else {
-            setError(!error);
-            setTimeout(() => {
-              setError(false);
-            }, 2000);
-          }
-        });
-      });
+    } else if(usuario > 0 && contraseña > 6 && correo > 0 && /\S+@\S+\.\S+/.test(correo)) {
+        navigate("/signin");
+    }else{
+        setError(!error);
     }
   }
-
   return (
-    <div className="content_formulario-ingreso">
+    <div className="content_formulario-registro">
       <form onSubmit={handleSubmit}>
         <div className="content_all-form">
           <div className="content_logo">
@@ -59,8 +35,9 @@ export function Signin() {
           </div>
           <fieldset>
             <div className="content_input">
-              <label>Usuario
-              <FaUserAlt/>
+              <label>
+                Usuario
+                <FaUserAlt />
               </label>
               <input
                 type="text"
@@ -70,8 +47,9 @@ export function Signin() {
               />
             </div>
             <div className="content_input">
-              <label>Contraseña
-              <FaUserShield/>
+              <label>
+                Contraseña
+                <FaUserShield />
               </label>
               <input
                 type="password"
@@ -80,15 +58,27 @@ export function Signin() {
                 onChange={(e) => setContraseña(e.target.value)}
               />
             </div>
+            <div className="content_input">
+              <label>
+                Correo electrónico
+                <FaRegPaperPlane />
+              </label>
+              <input
+                type="email"
+                placeholder="Correo"
+                value={correo}
+                onChange={(e) => setCorreo(e.target.value)}
+              />
+            </div>
           </fieldset>
           <div className="content_registro">
-            <Link to="/signup">No tienes cuenta?</Link>
+            <Link to="/signin">Tienes cuenta?</Link>
           </div>
           <div className="content_boton">
             <button>Enviar</button>
           </div>
           <div className={`content_error-n ${error ? "content_error-d" : ""}`}>
-            <p>Usuario o contraseña incorrectos</p>
+            <p>Por favor ingresa datos válidos</p>
           </div>
         </div>
       </form>

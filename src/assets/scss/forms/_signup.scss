@@ -1,6 +1,6 @@
 @use "../base/variables" as v;
 @use "../base/mixins" as m;
-.content_formulario-ingreso {
+.content_formulario-registro {
   height: 100%;
   width: 100%;
   background: rgb(87, 15, 15);
@@ -109,7 +109,7 @@
 
 //Versión responsive
 @include m.tablet {
-  .content_formulario-ingreso {
+  .content_formulario-registro {
     form {
       width: 500px;
     }
