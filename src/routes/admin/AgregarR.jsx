@@ -1,9 +1,9 @@
 import { functions as fc } from "../../data/request";
 import React, { useState } from "react";
-
+import { v4 as uuidv4 } from "uuid";
 export function AgregarR() {
   const [formulario, setFormulario] = useState({
-    id: "",
+    id: uuidv4(),
     date: "",
     comment: "",
     files: "",
@@ -33,12 +33,12 @@ export function AgregarR() {
         <h2> Formulario de agregar reportes</h2>
         <fieldset>
           <div className="content_input">
-            <label>Agregar código</label>
+            <label >código</label>
             <input
+              id="uuid-input"
               name="id"
               value={formulario.id}
-              onChange={handleInputChange}
-              type="number"
+              type="text"
               placeholder="#12345"
               autoFocus
             />
@@ -50,6 +50,7 @@ export function AgregarR() {
               value={formulario.date}
               onChange={handleInputChange}
               type="date"
+              required
             />
           </div>
           <div className="content_input">
@@ -58,6 +59,7 @@ export function AgregarR() {
               name="comment"
               value={formulario.comment}
               onChange={handleInputChange}
+              required
             />
           </div>
           <div className="content_input">
@@ -67,6 +69,7 @@ export function AgregarR() {
               type="file"
               onInput={handleInputChange}
               className="input_file"
+              required
             />
           </div>
           <div className="content_boton">
