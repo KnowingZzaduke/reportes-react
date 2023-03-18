@@ -5,25 +5,42 @@ import Logo from "/img/Dysam.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt, FaUserShield, FaRegPaperPlane } from "react-icons/fa";
 export function Signup() {
-  const [usuario, setUsuario] = useState("");
-  const [contraseña, setContraseña] = useState("");
-  const [correo, setCorreo] = useState("");
+  const { infoUsuario } = useContext(DataContext);
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+  console.log(user);
+  console.log(password);
+  console.log(email);
+
   function handleSubmit(e) {
     e.preventDefault();
-    if (usuario === "" || contraseña === "") {
+    if (user === "" || password === "" || email === "") {
       Swal.fire({
         title: "Error",
         text: "Los datos ingresados no son válidos",
         icon: "error",
       });
-      setUsuario("");
-      setContraseña("");
-    } else if(usuario > 0 && contraseña > 6 && correo > 0 && /\S+@\S+\.\S+/.test(correo)) {
-        navigate("/signin");
-    }else{
-        setError(!error);
+    } else if (
+      user.length < 6 ||
+      password.length < 6 ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    ) {
+      setError(!error)
+      setTimeout(() => {
+        setError(false);
+      }, 2000);
+    } else {
+      //Verificar si existe en la base de datos
+      const userExists = infoUsuario.some((info) => info.usuario === user);
+      const emailExists = infoUsuario.some((info) => info.correo === email);
+      if (!userExists && !emailExists) {
+        alert("Usuario creado correctamente");
+      } else {
+        alert("Uno de los campos ya está registrado");
+      }
     }
   }
   return (
@@ -41,9 +58,10 @@ export function Signup() {
               </label>
               <input
                 type="text"
+                title="Tu usuario debe tener 6 o más caracteres"
                 placeholder="Usuario"
-                value={usuario}
-                onChange={(e) => setUsuario(e.target.value)}
+                value={user}
+                onChange={(e) => setUser(e.target.value)}
               />
             </div>
             <div className="content_input">
@@ -54,8 +72,9 @@ export function Signup() {
               <input
                 type="password"
                 placeholder="Contraseña"
-                value={contraseña}
-                onChange={(e) => setContraseña(e.target.value)}
+                title="Tu contraseña debe tener 6 o más caracteres"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="content_input">
@@ -66,8 +85,8 @@ export function Signup() {
               <input
                 type="email"
                 placeholder="Correo"
-                value={correo}
-                onChange={(e) => setCorreo(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </fieldset>
