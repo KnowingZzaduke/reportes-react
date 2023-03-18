@@ -1,13 +1,12 @@
 import { functions as fc } from "../../data/request";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export function AgregarR() {
-
   const [formulario, setFormulario] = useState({
-    id: '',
-    date: '',
-    comment: '',
-    files: ''
+    id: "",
+    date: "",
+    comment: "",
+    files: "",
   });
 
   const handleSubmit = (event) => {
@@ -15,36 +14,60 @@ export function AgregarR() {
     fc.makeReport(formulario);
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { name, value, files } = event.target;
-  
+
     if (name === "files") {
       setFormulario({ ...formulario, [name]: files[0] });
     } else {
       setFormulario({ ...formulario, [name]: value });
     }
   };
-  
+
   return (
     <div className="content_agregar-datos">
-      <form onSubmit={handleSubmit} >
-        <h2>Agregar reportes</h2>
+      <div className="content_titulo">
+        <h1>Agregar reportes </h1>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <h2> Formulario de agregar reportes</h2>
         <fieldset>
           <div className="content_input">
             <label>Agregar código</label>
-            <input name="id" value={formulario.id} onChange={handleInputChange} type="number" placeholder="#12345" autoFocus/>
+            <input
+              name="id"
+              value={formulario.id}
+              onChange={handleInputChange}
+              type="number"
+              placeholder="#12345"
+              autoFocus
+            />
           </div>
           <div className="content_input">
             <label>Agregar fecha</label>
-            <input name="date" value={formulario.date} onChange={handleInputChange} type="date" />
+            <input
+              name="date"
+              value={formulario.date}
+              onChange={handleInputChange}
+              type="date"
+            />
           </div>
           <div className="content_input">
             <label>Agregar observaciones</label>
-            <textarea name="comment" value={formulario.comment} onChange={handleInputChange} />
+            <textarea
+              name="comment"
+              value={formulario.comment}
+              onChange={handleInputChange}
+            />
           </div>
           <div className="content_input">
             <label>Seleccionar archivo</label>
-            <input name="files" type="file" onInput={handleInputChange} className="input_file"/>
+            <input
+              name="files"
+              type="file"
+              onInput={handleInputChange}
+              className="input_file"
+            />
           </div>
           <div className="content_boton">
             <button>Enviar</button>
