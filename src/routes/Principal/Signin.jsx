@@ -21,32 +21,19 @@ export function Signin() {
       setUsuario("");
       setContraseña("");
     } else {
-      datoUsuario(usuario, contraseña);
-      infoUsuario.forEach((e) => {
-        let usuarioData = e.usuario;
-        let contraseñaData = e.contraseña;
-        const usuarioArray = usuario.split(" ");
-        const filterUsuario = usuarioArray.filter((user) => {
-          if (
-            user.includes("@usuario") &&
-            user === usuarioData &&
-            contraseña === contraseñaData
-          ) {
-            navigate("/usuarios");
-          } else if (
-            user.includes("@admin") &&
-            user === usuarioData &&
-            contraseña === contraseñaData
-          ) {
-            navigate("/administradores/bienvenida");
-          } else {
-            setError(!error);
-            setTimeout(() => {
-              setError(false);
-            }, 2000);
-          }
-        });
-      });
+      const usuarioEncontrado = infoUsuario.find((e) => e.correo === usuario && e.contraseña === contraseña);
+      if(!usuarioEncontrado){
+        setError(!error);
+        setTimeout(() =>{
+          setError(false)
+        }, 2000);
+        return
+      }
+      if(usuarioEncontrado.correo.includes("@admin")){
+        navigate("/administradores/bienvenida");
+      }else{
+        navigate("/usuarios/")
+      }
     }
   }
 

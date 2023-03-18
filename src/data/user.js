@@ -1,13 +1,13 @@
 export const infoUsuario = [
     {
-        usuario: "Jose Buelvas",
+        nombre: "Jose Buelvas",
         correo: "usuarioprueba@usuario.com",
         contraseña: "12345"
     },
     {
-        usuario: "Jose Arteta",
+        nombre: "Jose Arteta",
         correo: "adminprueba@admin.com",
-        contraseña: "54321"
+        contraseña: "123456"
     },
     {
         id: 1,

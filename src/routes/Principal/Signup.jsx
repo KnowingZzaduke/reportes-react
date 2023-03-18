@@ -6,25 +6,25 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt, FaUserShield, FaRegPaperPlane } from "react-icons/fa";
 export function Signup() {
   const { infoUsuario } = useContext(DataContext);
-  const [user, setUser] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  console.log(user);
+  console.log(name);
   console.log(password);
   console.log(email);
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (user === "" || password === "" || email === "") {
+    if (name === "" || password === "" || email === "") {
       Swal.fire({
         title: "Error",
         text: "Los datos ingresados no son válidos",
         icon: "error",
       });
     } else if (
-      user.length < 6 ||
+      name.length < 6 ||
       password.length < 6 ||
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     ) {
@@ -34,12 +34,20 @@ export function Signup() {
       }, 2000);
     } else {
       //Verificar si existe en la base de datos
-      const userExists = infoUsuario.some((info) => info.usuario === user);
+      const nameExists = infoUsuario.some((info) => info.usuario === name);
       const emailExists = infoUsuario.some((info) => info.correo === email);
-      if (!userExists && !emailExists) {
-        alert("Usuario creado correctamente");
+      if (emailExists) {
+        Swal.fire({
+          title: "Error",
+          text: "Este correo ya está en uso",
+          icon: "warning"
+        })
       } else {
-        alert("Uno de los campos ya está registrado");
+        Swal.fire({
+          title: "Operación correcta",
+          text: "Se ha creado correctamente su cuenta",
+          icon: "success"
+        })
       }
     }
   }
@@ -60,8 +68,8 @@ export function Signup() {
                 type="text"
                 title="Tu usuario debe tener 6 o más caracteres"
                 placeholder="Usuario"
-                value={user}
-                onChange={(e) => setUser(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="content_input">
