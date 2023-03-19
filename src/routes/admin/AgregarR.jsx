@@ -13,10 +13,25 @@ export function AgregarR() {
     files: "",
   });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    fc.makeReport(formulario);
-  };
+    let data = await fc.makeReport(formulario);
+    data = data.data;
+    if (data.salida == "error") {
+      Swal.fire({
+        title: "Error",
+        text: data.data,
+        icon: "error",
+      });
+    } else if (data.salida == "exito") {
+      Swal.fire({
+        title: "Exito",
+        text: "El archivo se subio correctamente.",
+        icon: "success",
+      });
+    }
+  }
+
 
   const handleInputChange = (event) => {
     const { name, value, files } = event.target;
@@ -46,6 +61,7 @@ export function AgregarR() {
             <input
               id="uuid-input"
               name="id"
+              onChange={handleInputChange}
               value={formulario.id}
               type="text"
               placeholder="#12345"

@@ -1,32 +1,27 @@
 
+import axios from 'axios';
+import CryptoJS from 'crypto-js';
 export const functions = {
-    login: async function(user, password){
+    login: async function (user, password) {
+        const formData = new FormData();
+        formData.append('user', user);
+        formData.append('password', password);
+
         try {
-            return await fetch("http://127.0.0.1/api.php?action=login",{
-                method: 'POST',
-                headers: {
-                    'content-Type':'application/json',
-                    'clientCode':'hjk4r4sdjs435o93s'
-                },
-                body: JSON.stringify({
-                    user,
-                    password
-                })
-    
-            }) 
-            
+            const response = await axios.post('http://127.0.0.1/api.php?action=login', formData);
+            return response;
         } catch (error) {
             console.log(error);
             return false;
         }
-    }, 
-    updateReport: async function(id,file,date,comment) {
+    },
+    updateReport: async function (id, file, date, comment) {
         try {
-            return await fetch("http://127.0.0.1/api.php?action=updateReport",{
+            return await fetch("http://127.0.0.1/api.php?action=updateReport", {
                 method: 'POST',
                 headers: {
-                    'content-Type':'application/json',
-                    'clientCode':'hjk4r4sdjs435o93s'
+                    'content-Type': 'application/json',
+                    'clientCode': 'hjk4r4sdjs435o93s'
                 },
                 body: JSON.stringify({
                     id,
@@ -34,68 +29,68 @@ export const functions = {
                     date,
                     comment
                 })
-    
-            }) 
-            
+
+            })
+
         } catch (error) {
             console.log(error);
             return false;
         }
     },
-    makeReport: async function(form) {
+    makeReport: async function (form) {
         const formData = new FormData();
-        formData.append('id', form.id);
+        formData.append('code', form.id);
         formData.append('file', form.files);
         formData.append('date', form.date);
-        formData.append('comment', form.comment);
+        formData.append('comments', form.comment);
         try {
-            if(!form.id){
+            if (!form.id) {
                 form.id = "aleatoricode";
             }
-            return await fetch("http://127.0.0.1/api.php?action=makeReport",{
-                method: 'POST',
-                body: formData
-    
-            }) 
-            
+            return await axios.post('http://127.0.0.1/api.php?action=makeReport', formData);
+
         } catch (error) {
             console.log(error);
             return false;
         }
     },
-    deleteReport: async function(id) {
+    deleteReport: async function (id) {
         try {
-            return await fetch("http://127.0.0.1/api.php?action=deleteReport",{
+            return await fetch("http://127.0.0.1/api.php?action=deleteReport", {
                 method: 'POST',
                 headers: {
-                    'content-Type':'application/json',
-                    'clientCode':'hjk4r4sdjs435o93s'
+                    'content-Type': 'application/json',
+                    'clientCode': 'hjk4r4sdjs435o93s'
                 },
                 body: JSON.stringify({
                     id
                 })
-    
-            }) 
-            
+
+            })
+
         } catch (error) {
             console.log(error);
             return false;
         }
     },
-    getReports: async function(){
+    getReports: async function (id) {
         try {
-            return await fetch("http://127.0.0.1/api.php?action=getReports",{
-                method: 'POST',
-                headers: {
-                    'content-Type':'application/json',
-                    'clientCode':'hjk4r4sdjs435o93s'
-                }
-    
-            }) 
-            
+            const formData = new FormData();
+            formData.append('code', id);
+            return await axios.post("http://127.0.0.1/api.php?action=getReports", formData)
         } catch (error) {
             console.log(error);
             return false;
         }
+    },
+    decryptdata : function (data){
+        const bytes = CryptoJS.AES.decrypt(data, "FDhfd678GHSDFS23");
+        const decrypted = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        return decrypted;
+          
+    },
+    encryptData : function(data) {
+        const encrypted = CryptoJS.AES.encrypt(JSON.stringify(data), "FDhfd678GHSDFS23");
+        return encrypted;
     }
 }

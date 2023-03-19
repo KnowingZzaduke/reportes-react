@@ -1,16 +1,23 @@
 import Swal from "sweetalert2";
+import Cookies from 'js-cookie';
 import { useContext, useState } from "react";
 import { DataContext } from "../../context/DataContext";
 import Logo from "/img/Dysam.jpg";
+import { functions as fc } from "../../data/request";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt, FaUserShield, FaRegPaperPlane } from "react-icons/fa";
+
 export function Signin() {
-  const { infoUsuario, datoUsuario } = useContext(DataContext);
+  const navigate = useNavigate();
+  const { infoUsuario, datoUsuario, validateSession } = useContext(DataContext);
+  
+  
+
   const [usuario, setUsuario] = useState("");
   const [contraseña, setContraseña] = useState("");
   const [error, setError] = useState(false);
-  const navigate = useNavigate();
-  function handleSubmit(e) {
+  
+  async function handleSubmit(e) {
     e.preventDefault();
     if (usuario === "" || contraseña === "") {
       Swal.fire({
@@ -21,64 +28,96 @@ export function Signin() {
       setUsuario("");
       setContraseña("");
     } else {
-      const usuarioEncontrado = infoUsuario.find((e) => e.correo === usuario && e.contraseña === contraseña);
-      if(!usuarioEncontrado){
-        setError(!error);
-        setTimeout(() =>{
-          setError(false)
-        }, 2000);
-        return
-      }
-      if(usuarioEncontrado.correo.includes("@admin")){
-        navigate("/administradores/bienvenida");
-      }else{
-        navigate("/usuarios/")
+      let data = await fc.login(usuario,contraseña);
+      data = data.data;
+      if(data.salida == "error"){
+        Swal.fire({
+          title: "Error",
+          text: data.data,
+          icon: "error",
+        });
+      }else if(data.salida == "exito"){
+        if(data.user == null || data.iduser == null || data.level == null){
+          Swal.fire({
+            title: "Error",
+            text: "Error de aplicacion por favor comunicate con el Programador",
+            icon: "error",
+          });
+        }else{
+          let decrytData = {
+            user: data.user,
+            level: data.level,
+            iduser: data.iduser,
+          }
+          let cookkieD = fc.encryptData(decrytData);
+          //console.log(cookkieD);
+          Cookies.set("dyzam-app", cookkieD);
+
+          if(data.level === 0){
+            navigate("/administradores/bienvenida");
+          }else{
+            navigate("/usuarios");
+          }
+        }
       }
     }
   }
+  
+  if(validateSession()){
+    const SESSION = Cookies.get("dyzam-app");
+    const SESSIONDECRYPT = fc.decryptdata(SESSION);
 
-  return (
-    <div className="content_formulario-ingreso">
-      <form onSubmit={handleSubmit}>
-        <div className="content_all-form">
-          <div className="content_logo">
-            <img src={Logo} />
-          </div>
-          <fieldset>
-            <div className="content_input">
-              <label>Usuario
-              <FaUserAlt/>
-              </label>
-              <input
-                type="text"
-                placeholder="Usuario"
-                value={usuario}
-                onChange={(e) => setUsuario(e.target.value)}
-              />
+    if(SESSIONDECRYPT.level === 0){
+      navigate("/administradores/bienvenida");
+    }else{
+      navigate("/usuarios");
+    }
+
+  }else{
+
+    return (
+      <div className="content_formulario-ingreso">
+        <form onSubmit={handleSubmit}>
+          <div className="content_all-form">
+            <div className="content_logo">
+              <img src={Logo} />
             </div>
-            <div className="content_input">
-              <label>Contraseña
-              <FaUserShield/>
-              </label>
-              <input
-                type="password"
-                placeholder="Contraseña"
-                value={contraseña}
-                onChange={(e) => setContraseña(e.target.value)}
-              />
+            <fieldset>
+              <div className="content_input">
+                <label>Usuario
+                <FaUserAlt/>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Usuario"
+                  value={usuario}
+                  onChange={(e) => setUsuario(e.target.value)}
+                />
+              </div>
+              <div className="content_input">
+                <label>Contraseña
+                <FaUserShield/>
+                </label>
+                <input
+                  type="password"
+                  placeholder="Contraseña"
+                  value={contraseña}
+                  onChange={(e) => setContraseña(e.target.value)}
+                />
+              </div>
+            </fieldset>
+            <div className="content_registro">
+              <Link to="/signup">No tienes cuenta?</Link>
             </div>
-          </fieldset>
-          <div className="content_registro">
-            <Link to="/signup">No tienes cuenta?</Link>
+            <div className="content_boton">
+              <button>Enviar</button>
+            </div>
+            <div className={`content_error-n ${error ? "content_error-d" : ""}`}>
+              <p>Usuario o contraseña incorrectos</p>
+            </div>
           </div>
-          <div className="content_boton">
-            <button>Enviar</button>
-          </div>
-          <div className={`content_error-n ${error ? "content_error-d" : ""}`}>
-            <p>Usuario o contraseña incorrectos</p>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
+        </form>
+      </div>
+    );
+  }
 }

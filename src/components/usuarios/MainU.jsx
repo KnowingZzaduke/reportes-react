@@ -1,10 +1,44 @@
 import Documentos from "/img/documentos.png";
 import { FaSistrix, FaFileAlt } from "react-icons/fa";
 import { DataContext } from "../../context/DataContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { functions as fc } from "../../data/request";
+
 export function MainU() {
   const { descargarPdf } = useContext(DataContext);
+  const [usuario, setUsuario] = useState("");
+
+  const [datos, setDatos] = useState([
+  ]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    let data = await fc.getReports(usuario);
+    data = data.data;
+    if(data == undefined){
+      Swal.fire({
+        title: "Error",
+        text: "Error la pagina no envio datos",
+        icon: "error",
+      });
+    }else{
+      if (data.salida == "error") {
+        Swal.fire({
+          title: "Error",
+          text: data.data,
+          icon: "error",
+        });
+      } else if (data.salida == "exito") {
+        const nuevaFila = { id: data.date, nombre: "http://127.0.0.1/api.php?file="+data.file, edad: data.comment };
+        setDatos([...datos, nuevaFila]);
+        
+      }
+
+    }
+
+  }
   return (
     <div className="content_contenido-principal-u">
       <main>
@@ -39,9 +73,9 @@ export function MainU() {
         <div className="content_reportes">
           <div className="content_buscador">
             <h2>Ingresa tu código</h2>
-            <form>
-              <input type="text" placeholder="código" autoFocus />
-              <button>
+            <form onSubmit={handleSubmit}>
+              <input value={usuario} onChange={(e) => setUsuario(e.target.value)} type="text" placeholder="código" autoFocus />
+              <button type="submit" >
                 <FaSistrix />
               </button>
             </form>
@@ -61,15 +95,17 @@ export function MainU() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>14/03/2023</td>
+                {datos.map((fila) => (
+                  <tr key={fila.id}>
+                    <td>{fila.id}</td>
                     <td>
-                      <Link>
-                        <FaFileAlt title="Pdf" onClick={descargarPdf}/>
-                      </Link>
-                    </td>
-                    <td>Ninguna</td>
+                      <Link to={fila.nombre} target="_blank">
+                        <FaFileAlt title="Pdf"/>
+                      </Link></td>
+                    <td>{fila.edad}</td>
                   </tr>
+                ))}
+                 
                 </tbody>
               </table>
             </div>
