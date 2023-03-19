@@ -19,7 +19,7 @@ export function Main() {
         </div>
         <div className="content_descargar-pdf">
           <div className="content_boton">
-            <Link>
+            <Link to="/signup">
               <button>
                 Descarga tu <br /> reporte aquí{" "}
               </button>
