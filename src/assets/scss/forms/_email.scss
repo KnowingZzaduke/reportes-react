@@ -1,0 +1,107 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.content_formulario-email {
+  height: 100%;
+  width: 100%;
+  background: rgb(87, 15, 15);
+  background: linear-gradient(
+    90deg,
+    rgba(87, 15, 15, 1) 0%,
+    rgba(0, 0, 0, 1) 35%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  form {
+    background-color: v.$blanco;
+    box-shadow: 0 0 10px 1px v.$amarillo;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    .content_titulo{
+        h2{
+            font-size: 35px;
+        }
+    }
+    fieldset {
+      display: flex;
+      border-style: none;
+      flex-direction: column;
+      row-gap: 20px;
+      width: 100%;
+      margin-top: 2rem;
+      .content_input {
+        display: flex;
+        flex-direction: column;
+        margin: 0% auto;
+        width: 100%;
+        label {
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          column-gap: 5px;
+          svg {
+            font-size: 12px;
+          }
+        }
+        input {
+          border-radius: 5px;
+          border: 1px solid v.$negroOscuro;
+          padding: 10px 0;
+        }
+      }
+    }
+    .content_boton {
+      text-align: center;
+      width: 100%;
+      button {
+        margin: 10px 0px;
+        width: 92%;
+        padding: 10px 0;
+        border: none;
+        border-radius: 5px;
+        background-color: v.$azulClaro;
+        transition: 0.25s ease;
+        color: v.$blanco;
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 0 5px 0px v.$amarillo;
+        }
+      }
+    }
+  }
+  .content_error-n {
+    height: 0;
+    overflow: hidden;
+    transition: 0.25s ease;
+    width: 80%;
+    margin: 0% auto;
+    text-align: center;
+  }
+  .content_error-d {
+    height: 42px;
+    transition: 0.25s ease;
+    background-color: v.$rojo;
+    width: 80%;
+    margin: 0% auto;
+    margin-top: 1rem;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 5px;
+    color: v.$blanco;
+  }
+}
+
+//Versión responsive
+@include m.tablet {
+  .content_formulario-email {
+    form {
+      width: 500px;
+    }
+  }
+}

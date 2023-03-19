@@ -1,7 +1,10 @@
 import Documentos from "/img/documentos.png";
 import { FaSistrix, FaFileAlt } from "react-icons/fa";
+import { DataContext } from "../../context/DataContext";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 export function MainU() {
+  const { descargarPdf } = useContext(DataContext);
   return (
     <div className="content_contenido-principal-u">
       <main>
@@ -22,6 +25,7 @@ export function MainU() {
                   <li>Ingresar tú código en el buscador</li>
                   <li>Presiona en buscar</li>
                   <li>Revisa la tabla de reportes</li>
+                  <li>Presiona archivo para descargar el reporte</li>
                 </ul>
               </div>
             </div>
@@ -61,7 +65,7 @@ export function MainU() {
                     <td>14/03/2023</td>
                     <td>
                       <Link>
-                        <FaFileAlt title="Pdf" />
+                        <FaFileAlt title="Pdf" onClick={descargarPdf}/>
                       </Link>
                     </td>
                     <td>Ninguna</td>

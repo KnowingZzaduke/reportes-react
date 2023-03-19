@@ -9,6 +9,7 @@ import {
   FaGlobe,
   FaPowerOff,
 } from "react-icons/fa";
+import { FiMail } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 export function NavbarA() {
@@ -84,6 +85,12 @@ export function NavbarA() {
                 <Link to="/administradores/detalles-reportes">
                   <FaGlobe />
                   Detalles reportes
+                </Link>
+              </li>
+              <li>
+                <Link to="/administradores/formulario-email">
+                  <FiMail />
+                  Correo reportes
                 </Link>
               </li>
             </ul>

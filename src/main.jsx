@@ -13,6 +13,7 @@ import { Bienvenida } from "./routes/admin/Bienvenida";
 import { AgregarR } from "./routes/admin/AgregarR";
 import { EliminarR } from "./routes/admin/EliminarR";
 import { DetallesR } from "./routes/admin/DetallesR";
+import { Email } from "./routes/admin/Email";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/administradores/detalles-reportes",
         element: <DetallesR/>
+      },
+      {
+        path: "/administradores/formulario-email",
+        element: <Email/>
       }
     ]
     

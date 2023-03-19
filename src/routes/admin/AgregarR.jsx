@@ -1,7 +1,11 @@
 import { functions as fc } from "../../data/request";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { FaRegClone } from "react-icons/fa";
+import { useRef } from "react";
+import Swal from "sweetalert2";
 export function AgregarR() {
+  const inputRef = useRef([]);
   const [formulario, setFormulario] = useState({
     id: uuidv4(),
     date: "",
@@ -24,6 +28,11 @@ export function AgregarR() {
     }
   };
 
+  const copyQr = () => {
+    const value = inputRef.current.select();
+    document.execCommand("copy");
+  };
+
   return (
     <div className="content_agregar-datos">
       <div className="content_titulo">
@@ -33,7 +42,7 @@ export function AgregarR() {
         <h2> Formulario de agregar reportes</h2>
         <fieldset>
           <div className="content_input">
-            <label >código</label>
+            <label>Código</label>
             <input
               id="uuid-input"
               name="id"
@@ -77,6 +86,22 @@ export function AgregarR() {
           </div>
         </fieldset>
       </form>
+      <div className="content_input-copiar">
+        <label>Copiar código</label>
+        <div className="input">
+          <input
+            name="files"
+            type="text"
+            className="input_code"
+            required
+            defaultValue={formulario.id}
+            ref={inputRef}
+          />
+          <div className="toggle_copiar">
+            <FaRegClone title="copiar" onClick={copyQr} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
