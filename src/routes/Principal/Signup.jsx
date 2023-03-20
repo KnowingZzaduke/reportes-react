@@ -40,6 +40,7 @@ export function Signup() {
           text: data.data,
           icon: "success",
         });
+        navigate("/signin")
       }else{
         Swal.fire({
           title: "Error",

@@ -32,7 +32,7 @@ export function MainU() {
         });
       } else if (data.salida == "exito") {
         const nuevaFila = { id: data.date, nombre: "http://127.0.0.1/api.php?file="+data.file, edad: data.comment };
-        setDatos([...datos, nuevaFila]);
+        setDatos([nuevaFila]);
         
       }
 

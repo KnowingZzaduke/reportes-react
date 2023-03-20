@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { useContext, useState } from "react";
 import { DataContext } from "../../context/DataContext";
 import Logo from "/img/Dysam.jpg";
@@ -9,72 +9,67 @@ import { FaUserAlt, FaUserShield, FaRegPaperPlane } from "react-icons/fa";
 
 export function Signin() {
   const navigate = useNavigate();
-  const { infoUsuario, datoUsuario, validateSession } = useContext(DataContext);
-  
-  
+  const { validateSession } = useContext(DataContext);
 
   const [usuario, setUsuario] = useState("");
   const [contraseña, setContraseña] = useState("");
   const [error, setError] = useState(false);
-  
-  async function handleSubmit(e) {
+
+  const handleSubmit = async function (e) {
     e.preventDefault();
     if (usuario === "" || contraseña === "") {
-      Swal.fire({
-        title: "Error",
-        text: "Los datos ingresados no son válidos",
-        icon: "error",
-      });
+      setError(!error);
       setUsuario("");
       setContraseña("");
+      setTimeout(() => {
+        setError(false);
+      }, 2000)
     } else {
-      let data = await fc.login(usuario,contraseña);
+      let data = await fc.login(usuario, contraseña);
       data = data.data;
-      if(data.salida == "error"){
+      if (data.salida == "error") {
         Swal.fire({
           title: "Error",
           text: data.data,
           icon: "error",
         });
-      }else if(data.salida == "exito"){
-        if(data.user == null || data.iduser == null || data.level == null){
+      } else if (data.salida == "exito") {
+        if (data.user == null || data.iduser == null || data.level == null) {
           Swal.fire({
             title: "Error",
             text: "Error de aplicacion por favor comunicate con el Programador",
             icon: "error",
           });
-        }else{
+        } else {
           let decrytData = {
             user: data.user,
             level: data.level,
             iduser: data.iduser,
-          }
+          };
           let cookkieD = fc.encryptData(decrytData);
           //console.log(cookkieD);
           Cookies.set("dyzam-app", cookkieD);
 
-          if(data.level === 0){
+          if (data.level === 0) {
             navigate("/administradores/bienvenida");
-          }else{
+          } else {
             navigate("/usuarios");
           }
         }
       }
     }
-  }
-  
-  if(validateSession()){
+  };
+
+  if (validateSession()) {
     const SESSION = Cookies.get("dyzam-app");
     const SESSIONDECRYPT = fc.decryptdata(SESSION);
 
-    if(SESSIONDECRYPT.level === 0){
+    if (SESSIONDECRYPT.level === 0) {
       navigate("/administradores/bienvenida");
-    }else{
+    } else {
       navigate("/usuarios");
     }
-
-  }else{
-
+  } else {
     return (
       <div className="content_formulario-ingreso">
         <form onSubmit={handleSubmit}>
@@ -84,8 +79,9 @@ export function Signin() {
             </div>
             <fieldset>
               <div className="content_input">
-                <label>Usuario
-                <FaUserAlt/>
+                <label>
+                  Usuario
+                  <FaUserAlt />
                 </label>
                 <input
                   type="text"
@@ -95,8 +91,9 @@ export function Signin() {
                 />
               </div>
               <div className="content_input">
-                <label>Contraseña
-                <FaUserShield/>
+                <label>
+                  Contraseña
+                  <FaUserShield />
                 </label>
                 <input
                   type="password"
@@ -112,8 +109,10 @@ export function Signin() {
             <div className="content_boton">
               <button>Enviar</button>
             </div>
-            <div className={`content_error-n ${error ? "content_error-d" : ""}`}>
-              <p>Usuario o contraseña incorrectos</p>
+            <div
+              className={`content_error-n ${error ? "content_error-d" : ""}`}
+            >
+              <p>Los campos no pueden ir vacíos</p>
             </div>
           </div>
         </form>

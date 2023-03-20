@@ -12,8 +12,8 @@ import {
 import { FiMail } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Cookies from 'js-cookie';
-import {useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 export function NavbarA() {
   const [menu, setMenu] = useState(false);
   const [op, setOp] = useState(false);
@@ -25,8 +25,7 @@ export function NavbarA() {
     setOp(!op);
   }
 
-  function closeSession(){
-    
+  function closeSession() {
     Cookies.remove("dyzam-app");
     navigate("/signin");
   }
@@ -60,7 +59,6 @@ export function NavbarA() {
                 >
                   <button onClick={closeSession}>
                     <FaPowerOff />
-                    Cerrar sesión
                   </button>
                 </div>
               </div>

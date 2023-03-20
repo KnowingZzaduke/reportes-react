@@ -9,21 +9,28 @@ import {
   FaInfoCircle,
   FaPhone,
 } from "react-icons/fa";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+
 export function NavbarU() {
   const [active, setActive] = useState(false);
   const [config, setConfig] = useState(false);
+  const navigate = useNavigate();
   function handleClick() {
     setActive(!active);
   }
-
   function configClick() {
     setConfig(!config);
+  }
+  function closeSession() {
+    Cookies.remove("dyzam-app");
+    navigate("/signin");
   }
   return (
     <div className="content_navbar-u">
       <nav className="navbar">
         <div className="content_logo">
-          <img src={Logo} className="logo"/>
+          <img src={Logo} className="logo" />
         </div>
         <div
           className={`content_enlaces-n ${active ? "content_enlaces-d" : ""}`}
@@ -56,7 +63,7 @@ export function NavbarU() {
                   </li>
                   <li>
                     <FaPowerOff />
-                    <Link>Cerrar sesión</Link>
+                    <button onClick={closeSession}>Cerrar sesión</button>
                   </li>
                 </ul>
               </div>

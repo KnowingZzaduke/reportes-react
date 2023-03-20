@@ -18,9 +18,7 @@ export function EliminarR() {
   const [codigo, setCodigo] = useState("");
 
   const [usuario, setUsuario] = useState("");
-  const [datos, setDatos] = useState([
-
-  ]);
+  const [datos, setDatos] = useState([]);
   const [modal, setModal] = useState(false);
   const idElemento = infoUsuario.map((i) => i.id);
 
@@ -29,11 +27,10 @@ export function EliminarR() {
     date: "",
     comment: "",
     files: "",
-    nombre: ""
+    nombre: "",
   });
 
   async function handleSSubmit(e) {
-   
     e.preventDefault();
     let data = await fc.getReports(usuario);
     data = data.data;
@@ -52,35 +49,36 @@ export function EliminarR() {
           icon: "error",
         });
       } else if (data.salida == "exito") {
-        
-        const nuevaFila = { id: data.id, date: data.date, nombre: "http://127.0.0.1/api.php?file=" + data.file, edad: data.comment };
+        const nuevaFila = {
+          id: data.id,
+          date: data.date,
+          nombre: "http://127.0.0.1/api.php?file=" + data.file,
+          edad: data.comment,
+        };
         setDatos([nuevaFila]);
         setFormulario({
           code: data.id,
           date: data.date,
           comment: data.comment,
-          nombre: "http://127.0.0.1/api.php?file="+data.file
+          nombre: "http://127.0.0.1/api.php?file=" + data.file,
         });
       }
-
     }
-
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     let data = await fc.updateReport(formulario);
     data = data.data;
-    if(data == undefined){
+    if (data == undefined) {
       setModal(false);
       Swal.fire({
         title: "Error",
         text: "Error la pagina no envio datos",
         icon: "error",
       });
-
-    }else{
-      if(data.salida == "exito"){
+    } else {
+      if (data.salida == "exito") {
         Swal.fire({
           title: "Exito",
           text: "Reporte actualizado correctamente.",
@@ -88,17 +86,20 @@ export function EliminarR() {
         });
         setModal(false);
 
-        const nuevaFila = { id: formulario.code, date: formulario.date, nombre: "http://127.0.0.1/api.php?file=" + formulario.code, edad: formulario.comment };
+        const nuevaFila = {
+          id: formulario.code,
+          date: formulario.date,
+          nombre: "http://127.0.0.1/api.php?file=" + formulario.code,
+          edad: formulario.comment,
+        };
         setDatos([nuevaFila]);
-        
-      }else{
+      } else {
         Swal.fire({
           title: "Error",
-          text: "El reporte no pudo ser actualizado, Error:."+data.data,
+          text: "El reporte no pudo ser actualizado, Error:." + data.data,
           icon: "error",
         });
       }
-
     }
   };
 
@@ -116,33 +117,33 @@ export function EliminarR() {
   function mostrarModal() {
     setModal(!modal);
   }
-  function deleteReport(code){
+  function deleteReport(code) {
     Swal.fire({
-      title: '¿Estás seguro?',
-      text: '¡No podrás revertir esto!',
-      icon: 'warning',
+      title: "¿Estás seguro?",
+      text: "¡No podrás revertir esto!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Sí, bórralo',
-      cancelButtonText: 'Cancelar'
+      confirmButtonText: "Sí, bórralo",
+      cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
         // Aquí puedes definir la lógica para borrar el elemento
         let data = await fc.deleteReport(code);
-        if(!data){
+        if (!data) {
           Swal.fire({
             title: "Error",
             text: "Error la pagina no envio datos",
             icon: "error",
           });
-        }else{
+        } else {
           data = data.data;
-          if(data.salida == "error"){
+          if (data.salida == "error") {
             Swal.fire({
               title: "Error",
               text: "El reporte no pudo ser borrado",
               icon: "error",
             });
-          }else{
+          } else {
             Swal.fire({
               title: "Exito",
               text: data.data,
@@ -169,7 +170,7 @@ export function EliminarR() {
           </div>
           <fieldset>
             <div className="content_input">
-              <label>Editando Reporte de codigo</label>
+              <label>Código</label>
               <input
                 name="code"
                 readOnly
@@ -183,7 +184,7 @@ export function EliminarR() {
             <div className="content_input">
               <label>Editar fecha</label>
               <input
-              required
+                required
                 name="date"
                 value={formulario.date}
                 onChange={handleInputChange}
@@ -199,19 +200,23 @@ export function EliminarR() {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="content_input">
-              <label>Seleccionar archivo</label>
-              <input
-                name="files"
-                type="file"
-                onInput={handleInputChange}
-                className="input_file"
-              />
-            <div>
-            <Link to={formulario.nombre} target="_blank">
-                <FaRegEye title="Pdf"/>
-            </Link>
-            </div>
+            <div className="content_input input_file">
+              <div className="input">
+                <label>Seleccionar archivo</label>
+                <input
+                  name="files"
+                  type="file"
+                  onInput={handleInputChange}
+                  className="input_file"
+                />
+              </div>
+
+              <div className="content_toggle-vs">
+                <Link to={formulario.nombre} target="_blank">
+                  <FaRegEye title="Pdf" />
+                  <p>Visualizar documento</p>
+                </Link>
+              </div>
             </div>
             <div className="content_boton">
               <button>Enviar</button>
@@ -225,8 +230,14 @@ export function EliminarR() {
       <div className="content_buscador">
         <h2>Ingresa tu código</h2>
         <form onSubmit={handleSSubmit}>
-          <input value={usuario} onChange={(e) => setUsuario(e.target.value)} type="text" placeholder="código" autoFocus />
-          <button type="submit" >
+          <input
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
+            type="text"
+            placeholder="código"
+            autoFocus
+          />
+          <button type="submit">
             <FaSistrix />
           </button>
         </form>
@@ -255,15 +266,15 @@ export function EliminarR() {
                   <td>
                     <Link to={fila.nombre} target="_blank">
                       <FaFileAlt title="Pdf" />
-                    </Link></td>
+                    </Link>
+                  </td>
                   <td>{fila.edad}</td>
                   <td className="opciones">
-                    <FaEdit onClick={()=>mostrarModal(fila.id)} />
-                    <FaTrashAlt onClick={()=>deleteReport(fila.id)} />
+                    <FaEdit onClick={() => mostrarModal(fila.id)} />
+                    <FaTrashAlt onClick={() => deleteReport(fila.id)} />
                   </td>
                 </tr>
               ))}
-
             </tbody>
           </table>
         </div>

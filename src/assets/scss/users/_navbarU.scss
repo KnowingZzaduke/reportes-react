@@ -72,6 +72,18 @@
             overflow: hidden;
             height: 0;
             background-color: v.$negroOscuro;
+            ul{
+              li{
+                button{
+                  background-color: transparent;
+                  border: none;
+                  padding: 10px 0;
+                  &:hover{
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
           }
           .content_opciones-d {
             height: 100%;

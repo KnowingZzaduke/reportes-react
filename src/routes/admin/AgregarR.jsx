@@ -13,8 +13,8 @@ export function AgregarR() {
     files: "",
   });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     let data = await fc.makeReport(formulario);
     data = data.data;
     if (data.salida == "error") {
@@ -26,7 +26,7 @@ export function AgregarR() {
     } else if (data.salida == "exito") {
       Swal.fire({
         title: "Exito",
-        text: "El archivo se subio correctamente.",
+        text: "El archivo se subió correctamente.",
         icon: "success",
       });
     }
@@ -64,7 +64,6 @@ export function AgregarR() {
               onChange={handleInputChange}
               value={formulario.id}
               type="text"
-              placeholder="#12345"
               autoFocus
             />
           </div>
