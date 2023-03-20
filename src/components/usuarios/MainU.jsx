@@ -67,7 +67,7 @@ export function MainU() {
           <div className="content_main-right">
             <div className="content_logo">
               <img src={Documentos} />
-            </div>
+            </div> 
           </div>
         </div>
         <div className="content_reportes">

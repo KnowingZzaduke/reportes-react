@@ -15,22 +15,31 @@ export const functions = {
             return false;
         }
     },
-    updateReport: async function (id, file, date, comment) {
-        try {
-            return await fetch("http://127.0.0.1/api.php?action=updateReport", {
-                method: 'POST',
-                headers: {
-                    'content-Type': 'application/json',
-                    'clientCode': 'hjk4r4sdjs435o93s'
-                },
-                body: JSON.stringify({
-                    id,
-                    file,
-                    date,
-                    comment
-                })
+    signup: async function (user, password, email) {
+        const formData = new FormData();
+        formData.append('user', user);
+        formData.append('password', password);
+        formData.append('email', email);
 
-            })
+        try {
+            const response = await axios.post('http://127.0.0.1/api.php?action=signup', formData);
+            return response;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    },
+    updateReport: async function (form) {
+        const formData = new FormData();
+        formData.append('code', form.code);
+        formData.append('file', form.files);
+        formData.append('date', form.date);
+        formData.append('comments', form.comment);
+        try {
+            if (!form.id) {
+                form.id = "aleatoricode";
+            }
+            return await axios.post('http://127.0.0.1/api.php?action=updateReport', formData);
 
         } catch (error) {
             console.log(error);
@@ -55,18 +64,10 @@ export const functions = {
         }
     },
     deleteReport: async function (id) {
+        const formData = new FormData();
+        formData.append('code', id);
         try {
-            return await fetch("http://127.0.0.1/api.php?action=deleteReport", {
-                method: 'POST',
-                headers: {
-                    'content-Type': 'application/json',
-                    'clientCode': 'hjk4r4sdjs435o93s'
-                },
-                body: JSON.stringify({
-                    id
-                })
-
-            })
+            return await axios.post("http://127.0.0.1/api.php?action=deleteReport", formData)
 
         } catch (error) {
             console.log(error);

@@ -4,6 +4,7 @@ import { DataContext } from "../../context/DataContext";
 import Logo from "/img/Dysam.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt, FaUserShield, FaRegPaperPlane } from "react-icons/fa";
+import { functions as fc } from "../../data/request";
 export function Signup() {
   const { infoUsuario } = useContext(DataContext);
   const [name, setName] = useState("");
@@ -11,11 +12,8 @@ export function Signup() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  console.log(name);
-  console.log(password);
-  console.log(email);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (name === "" || password === "" || email === "") {
       Swal.fire({
@@ -33,21 +31,21 @@ export function Signup() {
         setError(false);
       }, 2000);
     } else {
-      //Verificar si existe en la base de datos
-      const nameExists = infoUsuario.some((info) => info.usuario === name);
-      const emailExists = infoUsuario.some((info) => info.correo === email);
-      if (emailExists) {
+      let data = await fc.signup(name,password,email);
+      data = data.data;
+      
+      if(data.salida == "exito"){
+        Swal.fire({
+          title: "Exito",
+          text: data.data,
+          icon: "success",
+        });
+      }else{
         Swal.fire({
           title: "Error",
-          text: "Este correo ya está en uso",
-          icon: "warning"
-        })
-      } else {
-        Swal.fire({
-          title: "Operación correcta",
-          text: "Se ha creado correctamente su cuenta",
-          icon: "success"
-        })
+          text: data.data,
+          icon: "error",
+        });
       }
     }
   }
