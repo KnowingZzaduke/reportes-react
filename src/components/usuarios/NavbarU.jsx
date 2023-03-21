@@ -5,9 +5,7 @@ import {
   FaBars,
   FaUserCog,
   FaPowerOff,
-  FaRegSun,
-  FaInfoCircle,
-  FaPhone,
+  FaRegSun
 } from "react-icons/fa";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
@@ -36,14 +34,6 @@ export function NavbarU() {
           className={`content_enlaces-n ${active ? "content_enlaces-d" : ""}`}
         >
           <ul>
-            <li>
-              <FaInfoCircle />
-              <a>Sobre nosotros</a>
-            </li>
-            <li>
-              <FaPhone />
-              <a>Contacto</a>
-            </li>
             <li className="enlace_opciones">
               <div className="info_usuario" onClick={configClick}>
                 <a>
