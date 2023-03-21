@@ -4,16 +4,10 @@ export function Footer() {
     <div className="content_footer">
       <footer>
         <div className="content_logo">
-          <img src={Logo} />
+          <img src={Logo} alt="Dysam"/>
         </div>
         <div className="content_enlaces">
           <ul>
-            <li>
-              <a>Sobre nosotros</a>
-            </li>
-            <li>
-              <a>Contactanos</a>
-            </li>
             <li>
               <a>Términos y condiciones</a>
             </li>

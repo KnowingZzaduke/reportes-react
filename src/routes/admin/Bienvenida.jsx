@@ -6,7 +6,7 @@ export function Bienvenida() {
       <div className="content_info">
         <h1>Bienvenido/a</h1>
         <p>
-          Mediante este panel podrás agregar los reportes a los diferentes
+          Mediante este panel podrás agregar, editar y eliminar los reportes a los diferentes
           usuarios
         </p>
         <FaUsers />

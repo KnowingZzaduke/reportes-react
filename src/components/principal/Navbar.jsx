@@ -1,4 +1,4 @@
-import { FaBars, FaUserCheck, FaInfoCircle, FaPhone } from "react-icons/fa";
+import { FaBars, FaUserCheck } from "react-icons/fa";
 import { useState } from "react";
 import Logo from "/img/Dysam.jpg";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ export function Navbar() {
     <div className="content_navbar">
       <nav className="navbar">
         <div className="content_logo">
-          <img src={Logo} className="logo"></img>
+          <img src={Logo} className="logo" alt="Dysam"/>
         </div>
         <div
           className={`content_enlaces-n ${active ? "content_enlaces-d" : ""}`}
@@ -20,14 +20,6 @@ export function Navbar() {
             <li>
               <FaUserCheck />
               <Link to="/signin" target="_blank">Iniciar sesión</Link>
-            </li>
-            <li>
-              <FaInfoCircle />
-              <a>Sobre nosotros</a>
-            </li>
-            <li>
-              <FaPhone />
-              <a>Contacto</a>
             </li>
           </ul>
         </div>

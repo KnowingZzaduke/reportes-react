@@ -46,6 +46,11 @@ export function AgregarR() {
   const copyQr = () => {
     const value = inputRef.current.select();
     document.execCommand("copy");
+    Swal.fire({
+      title: "Exito",
+      text: "Código copiado correctamente",
+      icon: "success"
+    })
   };
 
   return (
@@ -111,6 +116,7 @@ export function AgregarR() {
             required
             defaultValue={formulario.id}
             ref={inputRef}
+            readOnly
           />
           <div className="toggle_copiar">
             <FaRegClone title="copiar" onClick={copyQr} />
