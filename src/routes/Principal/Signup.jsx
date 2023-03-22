@@ -66,7 +66,6 @@ export function Signup() {
               <input
                 type="text"
                 title="Tu usuario debe tener 6 o más caracteres"
-                placeholder="Usuario"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -78,7 +77,6 @@ export function Signup() {
               </label>
               <input
                 type="password"
-                placeholder="Contraseña"
                 title="Tu contraseña debe tener 6 o más caracteres"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -91,7 +89,6 @@ export function Signup() {
               </label>
               <input
                 type="email"
-                placeholder="Correo"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />

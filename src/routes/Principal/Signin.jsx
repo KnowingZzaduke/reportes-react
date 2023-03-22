@@ -80,12 +80,11 @@ export function Signin() {
             <fieldset>
               <div className="content_input">
                 <label>
-                  Usuario
-                  <FaUserAlt />
+                  Correo
+                  <FaRegPaperPlane/>
                 </label>
                 <input
                   type="text"
-                  placeholder="Usuario"
                   value={usuario}
                   onChange={(e) => setUsuario(e.target.value)}
                 />
@@ -97,7 +96,6 @@ export function Signin() {
                 </label>
                 <input
                   type="password"
-                  placeholder="Contraseña"
                   value={contraseña}
                   onChange={(e) => setContraseña(e.target.value)}
                 />
