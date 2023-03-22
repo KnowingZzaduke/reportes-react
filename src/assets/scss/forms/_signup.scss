@@ -3,18 +3,12 @@
 .content_formulario-registro {
   height: 100vh;
   width: 100%;
-  background: rgb(87, 15, 15);
-  background: linear-gradient(
-    90deg,
-    rgba(87, 15, 15, 1) 0%,
-    rgba(0, 0, 0, 1) 35%
-  );
   display: flex;
   align-items: center;
   justify-content: center;
   form {
     background-color: v.$blanco;
-    box-shadow: 0 0 10px 1px v.$amarillo;
+    box-shadow: 0 0 5px 0px v.$amarillo;
     height: 500px;
     display: flex;
     width: 320px;
@@ -35,6 +29,7 @@
         border-style: none;
         flex-direction: column;
         row-gap: 20px;
+        margin: 10px 0;
         .content_input {
           display: flex;
           flex-direction: column;
@@ -45,6 +40,7 @@
             display: flex;
             align-items: center;
             column-gap: 5px;
+            justify-content: center;
             svg {
               font-size: 12px;
             }
@@ -53,6 +49,7 @@
             border-radius: 5px;
             border: 1px solid v.$negroOscuro;
             padding: 10px 0;
+            text-align: center;
           }
         }
       }
