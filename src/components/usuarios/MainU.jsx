@@ -31,7 +31,7 @@ export function MainU() {
           icon: "error",
         });
       } else if (data.salida == "exito") {
-        const nuevaFila = { id: data.date, nombre: "http://127.0.0.1/api.php?file="+data.file, edad: data.comment };
+        const nuevaFila = { id: data.date, nombre: "/api.php?file="+data.file, edad: data.comment };
         setDatos([nuevaFila]);
         
       }
