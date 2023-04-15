@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt, FaUserShield, FaRegPaperPlane } from "react-icons/fa";
 import { functions as fc } from "../../data/request";
 export function Signup() {
-  const { infoUsuario } = useContext(DataContext);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");

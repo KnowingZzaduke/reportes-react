@@ -8,19 +8,15 @@ import {
   FaRegEye,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import { DataContext } from "../../context/DataContext";
+import { useState} from "react";
 import Swal from "sweetalert2";
 import { functions as fc } from "../../data/request";
 
 export function EliminarR() {
-  const { infoUsuario, descargarPdf } = useContext(DataContext);
-  const [codigo, setCodigo] = useState("");
 
   const [usuario, setUsuario] = useState("");
   const [datos, setDatos] = useState([]);
   const [modal, setModal] = useState(false);
-  const idElemento = infoUsuario.map((i) => i.id);
 
   const [formulario, setFormulario] = useState({
     code: "",
@@ -34,7 +30,6 @@ export function EliminarR() {
     e.preventDefault();
     let data = await fc.getReports(usuario);
     data = data.data;
-    //console.log(data);
     if (data == undefined) {
       Swal.fire({
         title: "Error",
@@ -52,7 +47,7 @@ export function EliminarR() {
         const nuevaFila = {
           id: data.id,
           date: data.date,
-          nombre: "/api.php?file=" + data.file,
+          nombre: "http://127.0.0.1/api.php?file=" + data.file,
           edad: data.comment,
         };
         setDatos([nuevaFila]);
@@ -60,7 +55,7 @@ export function EliminarR() {
           code: data.id,
           date: data.date,
           comment: data.comment,
-          nombre: "/api.php?file=" + data.file,
+          nombre: "http://127.0.0.1/api.php?file=" + data.file,
         });
       }
     }
@@ -89,7 +84,7 @@ export function EliminarR() {
         const nuevaFila = {
           id: formulario.code,
           date: formulario.date,
-          nombre: "/api.php?file=" + formulario.code,
+          nombre: "http://127.0.0.1/api.php?file=" + formulario.code,
           edad: formulario.comment,
         };
         setDatos([nuevaFila]);

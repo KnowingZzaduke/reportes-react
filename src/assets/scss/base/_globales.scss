@@ -29,16 +29,6 @@ body {
   height: 100vh;
 }
 
-.content_video-fondo {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 105%;
-  min-height: 100%;
-  transform: translateX(calc((100% - 100vw) / 2));
-  z-index: -3;
-}
-
 a {
   text-decoration: none;
   color: v.$negroOscuro;
@@ -60,3 +50,5 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+

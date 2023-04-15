@@ -17,14 +17,13 @@
     }
     .content_enlaces-n {
       position: fixed;
-      background-color: v.$negroOscuro;
+      background-color: v.$azulGrisClaro;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       top: -30%;
       transition: 0.100s ease;
-      height: 170px;
       ul {
         width: 100%;
         li {

@@ -5,7 +5,7 @@ import { DataContext } from "../../context/DataContext";
 import Logo from "/img/Dysam.jpg";
 import { functions as fc } from "../../data/request";
 import { Link, useNavigate } from "react-router-dom";
-import { FaUserAlt, FaUserShield, FaRegPaperPlane } from "react-icons/fa";
+import { FaUserShield, FaRegPaperPlane } from "react-icons/fa";
 
 export function Signin() {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export function Signin() {
       setContraseña("");
       setTimeout(() => {
         setError(false);
-      }, 2000)
+      }, 2000);
     } else {
       let data = await fc.login(usuario, contraseña);
       data = data.data;
@@ -47,8 +47,7 @@ export function Signin() {
             iduser: data.iduser,
           };
           let cookkieD = fc.encryptData(decrytData);
-          //console.log(cookkieD);
-          Cookies.set("dyzam-app", cookkieD);
+          Cookies.set("dyzam-app", cookkieD, { SameSite: "none", secure: true });
 
           if (data.level === 0) {
             navigate("/administradores/bienvenida");
@@ -81,7 +80,7 @@ export function Signin() {
               <div className="content_input">
                 <label>
                   Correo
-                  <FaRegPaperPlane/>
+                  <FaRegPaperPlane />
                 </label>
                 <input
                   type="text"

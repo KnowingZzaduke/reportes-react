@@ -35,9 +35,9 @@ export function AgregarR() {
 
   const handleInputChange = (event) => {
     const { name, value, files } = event.target;
-
+    const newFiles = files ? Array.from(files) : null;
     if (name === "files") {
-      setFormulario({ ...formulario, [name]: files[0] });
+      setFormulario({ ...formulario, [name]: newFiles });
     } else {
       setFormulario({ ...formulario, [name]: value });
     }
@@ -99,6 +99,7 @@ export function AgregarR() {
               onInput={handleInputChange}
               className="input_file"
               required
+              multiple
             />
           </div>
           <div className="content_boton">

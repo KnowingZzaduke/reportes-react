@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 export const Email = () => {
   const form = useRef();
@@ -17,18 +17,18 @@ export const Email = () => {
       )
       .then(
         (result) => {
-            Swal.fire({
-                title: "Correcto",
-                text: "El correo fué enviado correctamente",
-                icon: "success"
-            })
+          Swal.fire({
+            title: "Correcto",
+            text: "El correo fué enviado correctamente",
+            icon: "success",
+          });
         },
         (error) => {
-            Swal.fire({
-                title: "Error",
-                text: "El correo no fué enviado correctamente",
-                icon: "error"
-            })
+          Swal.fire({
+            title: "Error",
+            text: "El correo no fué enviado correctamente",
+            icon: "error",
+          });
         }
       );
   };
