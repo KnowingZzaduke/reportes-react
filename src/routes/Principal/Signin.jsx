@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../context/DataContext";
 import Logo from "/img/Dysam.jpg";
 import { functions as fc } from "../../data/request";
@@ -60,14 +60,16 @@ export function Signin() {
   };
 
   if (validateSession()) {
-    const SESSION = Cookies.get("dyzam-app");
-    const SESSIONDECRYPT = fc.decryptdata(SESSION);
-
-    if (SESSIONDECRYPT.level === 0) {
-      navigate("/administradores/bienvenida");
-    } else {
-      navigate("/usuarios");
-    }
+    useEffect(() => {
+      const SESSION = Cookies.get("dyzam-app");
+      const SESSIONDECRYPT = fc.decryptdata(SESSION);
+  
+      if (SESSIONDECRYPT.level === 0) {
+        navigate("/administradores/bienvenida");
+      } else {
+        navigate("/usuarios");
+      }
+    }, [])
   } else {
     return (
       <div className="content_formulario-ingreso">
