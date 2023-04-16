@@ -7,7 +7,7 @@ import "./assets/scss/app.scss";
 import { Signin } from "./routes/Principal/Signin";
 import { Signup } from "./routes/Principal/Signup";
 import { Usuarios } from "./routes/usuarios/Usuarios";
-import {Admin} from "./routes/admin/Administradores";
+import Admin from "./routes/admin/Administradores";
 import { DataContextProvider } from "./context/DataContext";
 import { Bienvenida } from "./routes/admin/Bienvenida";
 import { AgregarR } from "./routes/admin/AgregarR";

@@ -74,6 +74,15 @@ export const functions = {
             return false;
         }
     },
+    validate: async function () {
+        try {
+            const response = await axios.post('http://127.0.0.1/api.php?action=validate');
+            return response;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    },
     getReports: async function (id) {
         try {
             const formData = new FormData();

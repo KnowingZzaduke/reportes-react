@@ -7,7 +7,6 @@ import { functions as fc } from "../../data/request";
 
 export function MainU() {
   const [usuario, setUsuario] = useState("");
-
   const [datos, setDatos] = useState([]);
 
   async function handleSubmit(e) {

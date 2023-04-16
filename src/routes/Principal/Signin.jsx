@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUserShield, FaRegPaperPlane } from "react-icons/fa";
 
 export function Signin() {
+  const [redirectToAdmin, setRedirectToAdmin] = useState(false);
+  const [redirectToUser, setRedirectToUser] = useState(false);
   const navigate = useNavigate();
   const { validateSession } = useContext(DataContext);
 
@@ -47,13 +49,29 @@ export function Signin() {
             iduser: data.iduser,
           };
           let cookkieD = fc.encryptData(decrytData);
-          Cookies.set("dyzam-app", cookkieD, { SameSite: "none", secure: true });
+          Cookies.set("dyzam-app", cookkieD, {
+            SameSite: "none",
+            secure: true,
+          });
 
           if (data.level === 0) {
-            navigate("/administradores/bienvenida");
+            // navigate("/administradores/bienvenida");
+            setRedirectToAdmin(true);
           } else {
-            navigate("/usuarios");
+            // navigate("/usuarios");
+            setRedirectToUser(true)
           }
+          useEffect(() => {
+            if (redirectToAdmin) {
+              navigate("/administradores");
+            }
+          }, [redirectToAdmin, navigate]);
+          
+          useEffect(() => {
+            if (redirectToUser) {
+              navigate("/usuarios");
+            }
+          }, [redirectToUser, navigate]);
         }
       }
     }

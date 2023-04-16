@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import AguaFondo from '/video/onde.mp4';
 import LogoPdf from "/img/img-formato.jpg";
 export function Main() {
   return (

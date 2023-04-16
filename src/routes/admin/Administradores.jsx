@@ -5,10 +5,11 @@ import {useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { functions as fc } from "../../data/request";
 import Cookies from 'js-cookie';
+import {HOC} from '../../components/validation/Hoc';
 
 
 
-export function Admin() {
+function Admin() {
 
   const navigate = useNavigate();
   const SESSION = Cookies.get("dyzam-app");
@@ -41,3 +42,5 @@ export function Admin() {
     </>
   );
 }
+
+export default HOC(Admin);
