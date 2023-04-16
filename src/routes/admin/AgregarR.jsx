@@ -35,13 +35,14 @@ export function AgregarR() {
 
   const handleInputChange = (event) => {
     const { name, value, files } = event.target;
-    const newFiles = files ? Array.from(files) : null;
+    const newFiles = files ? files[0] : null;
     if (name === "files") {
       setFormulario({ ...formulario, [name]: newFiles });
     } else {
       setFormulario({ ...formulario, [name]: value });
     }
   };
+  
 
   const copyQr = () => {
     const value = inputRef.current.select();
@@ -70,6 +71,7 @@ export function AgregarR() {
               value={formulario.id}
               type="text"
               autoFocus
+              
             />
           </div>
           <div className="content_input">
@@ -99,7 +101,6 @@ export function AgregarR() {
               onInput={handleInputChange}
               className="input_file"
               required
-              multiple
             />
           </div>
           <div className="content_boton">
