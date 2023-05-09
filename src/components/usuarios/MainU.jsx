@@ -4,6 +4,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { functions as fc } from "../../data/request";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 export function MainU() {
   const [usuario, setUsuario] = useState("");
@@ -54,10 +61,10 @@ export function MainU() {
               </div>
               <div className="content_pasos">
                 <ul>
-                  <li>Ingresar tú código en el buscador</li>
-                  <li>Presiona en buscar</li>
-                  <li>Revisa la tabla de reportes</li>
-                  <li>Presiona archivo para descargar el reporte</li>
+                  <li>Ingresa tu código en el buscador.</li>
+                  <li>Presiona en buscar.</li>
+                  <li>Revisa la tabla de reportes.</li>
+                  <li>Presiona archivo para descargar el reporte.</li>
                 </ul>
               </div>
             </div>
@@ -89,30 +96,35 @@ export function MainU() {
               <h2>Resultados de búsqueda</h2>
               <FaSistrix />
             </div>
-            <div className="content_tabla">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Fecha</th>
-                    <th>PDF</th>
-                    <th>Observación</th>
-                  </tr>
-                </thead>
-                <tbody>
+            <TableContainer component={Paper} className="tabla">
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">Fecha</TableCell>
+                    <TableCell align="center">PDF</TableCell>
+                    <TableCell align="center">Observación</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
                   {datos.map((fila) => (
-                    <tr key={fila.id}>
-                      <td>{fila.id}</td>
-                      <td>
+                    <TableRow
+                      key={fila.id}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row" align="center">
+                        {fila.id}
+                      </TableCell>
+                      <TableCell align="center">
                         <Link to={fila.nombre} target="_blank">
                           <FaFileAlt title="Pdf" />
                         </Link>
-                      </td>
-                      <td>{fila.edad}</td>
-                    </tr>
+                      </TableCell>
+                      <TableCell align="center">{fila.edad}</TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
-            </div>
+                </TableBody>
+              </Table>
+            </TableContainer>
           </div>
         </div>
       </main>

@@ -8,12 +8,18 @@ import {
   FaRegEye,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useState} from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import { functions as fc } from "../../data/request";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 export function EliminarR() {
-
   const [usuario, setUsuario] = useState("");
   const [datos, setDatos] = useState([]);
   const [modal, setModal] = useState(false);
@@ -35,7 +41,7 @@ export function EliminarR() {
         title: "Error",
         text: "Error la pagina no envio datos",
         icon: "error",
-        heightAuto: false
+        heightAuto: false,
       });
     } else {
       if (data.salida == "error") {
@@ -43,8 +49,7 @@ export function EliminarR() {
           title: "Error",
           text: data.data,
           icon: "error",
-          heightAuto: false
-
+          heightAuto: false,
         });
       } else if (data.salida == "exito") {
         const nuevaFila = {
@@ -74,7 +79,7 @@ export function EliminarR() {
         title: "Error",
         text: "Error la pagina no envio datos",
         icon: "error",
-        heightAuto: false
+        heightAuto: false,
       });
     } else {
       if (data.salida == "exito") {
@@ -82,7 +87,7 @@ export function EliminarR() {
           title: "Exito",
           text: "Reporte actualizado correctamente.",
           icon: "success",
-          heightAuto: false
+          heightAuto: false,
         });
         setModal(false);
 
@@ -98,7 +103,7 @@ export function EliminarR() {
           title: "Error",
           text: "El reporte no pudo ser actualizado, Error:." + data.data,
           icon: "error",
-          heightAuto: false
+          heightAuto: false,
         });
       }
     }
@@ -126,7 +131,7 @@ export function EliminarR() {
       showCancelButton: true,
       confirmButtonText: "Sí, bórralo",
       cancelButtonText: "Cancelar",
-      heightAuto: false
+      heightAuto: false,
     }).then(async (result) => {
       if (result.isConfirmed) {
         // Aquí puedes definir la lógica para borrar el elemento
@@ -136,7 +141,7 @@ export function EliminarR() {
             title: "Error",
             text: "Error la pagina no envio datos",
             icon: "error",
-            heightAuto: false
+            heightAuto: false,
           });
         } else {
           data = data.data;
@@ -145,14 +150,14 @@ export function EliminarR() {
               title: "Error",
               text: "El reporte no pudo ser borrado",
               icon: "error",
-              heightAuto: false
+              heightAuto: false,
             });
           } else {
             Swal.fire({
               title: "Exito",
               text: data.data,
               icon: "success",
-              heightAuto: false
+              heightAuto: false,
             });
             setDatos([]);
           }
@@ -252,7 +257,43 @@ export function EliminarR() {
           <h2>Resultados de búsqueda</h2>
           <FaSistrix />
         </div>
-        <div className="content_tabla">
+        <TableContainer component={Paper} className="tabla">
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Id</TableCell>
+                <TableCell align="center">Fecha</TableCell>
+                <TableCell align="center">PDF</TableCell>
+                <TableCell align="center">Observación</TableCell>
+                <TableCell align="center">Herramientas</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {datos.map((fila) => (
+                <TableRow
+                  key={fila.id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row" align="center">
+                    {fila.id}
+                  </TableCell>
+                  <TableCell align="center">{fila.date}</TableCell>
+                  <TableCell align="center">
+                    <Link to={fila.nombre} target="_blank">
+                      <FaFileAlt title="Pdf" />
+                    </Link>
+                  </TableCell>
+                  <TableCell align="center">{fila.edad}</TableCell>
+                  <TableCell align="center">
+                    <FaEdit onClick={() => mostrarModal(fila.id)} />
+                    <FaTrashAlt onClick={() => deleteReport(fila.id)} />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        {/* <div className="content_tabla">
           <table>
             <thead>
               <tr>
@@ -275,14 +316,13 @@ export function EliminarR() {
                   </td>
                   <td>{fila.edad}</td>
                   <td className="opciones">
-                    <FaEdit onClick={() => mostrarModal(fila.id)} />
-                    <FaTrashAlt onClick={() => deleteReport(fila.id)} />
+                    
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
+        </div> */}
       </div>
     </div>
   );

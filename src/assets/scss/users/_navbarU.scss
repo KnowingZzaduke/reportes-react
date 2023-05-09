@@ -6,6 +6,7 @@
   position: fixed;
   width: 100%;
   z-index: 3;
+  border-bottom: 2px solid v.$negro;
   .navbar {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

@@ -4,8 +4,10 @@
 .content_contenido-principal-u {
   padding: 5rem 10px 0 10px;
   main {
-    margin-top: 3rem;
     .content_instrucciones {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      align-items: center;
       .content_main-left {
         .content_info {
           .content_titulo {
@@ -65,17 +67,20 @@
           border-radius: 5px;
           display: flex;
           align-items: center;
+          padding: 15px 0;
           input {
             border-radius: 5px;
-            padding: 5px 0;
+            padding: 10px 0;
             margin: 5px;
             width: 90%;
+            border: 1px solid v.$negro;
           }
           button {
             border: none;
             background-color: v.$azulClaro;
             border-radius: 5px;
-            padding: 5px;
+            color: v.$blanco;
+            padding: 8px;
             transition: 0.25s ease;
             &:hover {
               background-color: v.$azulOscuro;
@@ -101,13 +106,40 @@
             font-size: 20px;
           }
         }
-        .content_tabla {
+        .tabla {
+          margin: 0% auto;
+          margin-top: 1rem;
+          overflow-x: auto;
+          scrollbar-color: black;
+          scrollbar-gutter: stable both-edges;
+          scrollbar-width: thin;
+          border-radius: 5px;
+
+          &::-webkit-scrollbar {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+          }
+
+          &::-webkit-scrollbar:vertical {
+            width: 13px;
+          }
+
+          &::-webkit-scrollbar-button:increment
+
+          &::-webkit-scrollbar:horizontal {
+            height: 10px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: #797979;
+            border-radius: 20px;
+            border: 2px solid v.$negro;
+          }
+
+          &::-webkit-scrollbar-track {
+            border-radius: 10px;
+          }
           table {
-            margin-top: 1rem;
-            background-color: v.$gris;
-            width: 100%;
-            border-collapse: collapse;
-            border-radius: 5px;
             thead {
               tr {
                 th {
@@ -149,44 +181,70 @@
 }
 
 @include m.desktop {
-  main {
-    .content_instrucciones {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  .content_buscador {
-    form {
-      width: 60%;
-      margin: 0% auto;
-    }
-  }
-  .content_tabla-reportes {
-    margin: 0% auto;
-    .content_titulo {
-      justify-content: center;
-    }
-    .content_tabla {
-      width: 70%;
-      margin: 0% auto;
+  .content_contenido-principal-u {
+    main {
+      .content_instrucciones {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        .content_main-right {
+          .content_logo {
+            img {
+              width: 400px;
+            }
+          }
+        }
+      }
+      .content_reportes {
+        .content_buscador {
+          form {
+            width: 60%;
+            margin: 0% auto;
+          }
+        }
+        .content_tabla-reportes {
+          margin: 3rem auto;
+          .content_titulo {
+            justify-content: center;
+          }
+          .tabla {
+            width: 70%;
+            margin: 0% auto;
+            border-radius: 5px;
+          }
+        }
+      }
     }
   }
 }
 
 @include m.desktopXl {
-  .content_buscador {
-    form {
-      width: 50%;
-      margin: 0% auto;
-    }
-  }
-  .content_tabla-reportes {
-    .content_titulo {
-      justify-content: center;
-    }
-    .content_tabla {
-      width: 60%;
-      margin: 0% auto;
+  .content_contenido-principal-u {
+    main {
+      .content_instrucciones {
+        .content_main-right {
+          img {
+            width: 500px;
+          }
+        }
+      }
+      .content_reportes {
+        .content_buscador {
+          form {
+            width: 50%;
+            margin: 0% auto;
+          }
+        }
+        .content_tabla-reportes {
+          .content_titulo {
+            justify-content: center;
+          }
+          .tabla{
+            width: 50%;
+            border: 5px;
+          }
+        }
+      }
     }
   }
 }
