@@ -22,12 +22,14 @@ export function AgregarR() {
         title: "Error",
         text: data.data,
         icon: "error",
+        heightAuto: false
       });
     } else if (data.salida == "exito") {
       Swal.fire({
         title: "Exito",
         text: "El archivo se subió correctamente.",
         icon: "success",
+        heightAuto: false
       });
     }
   }
@@ -50,7 +52,8 @@ export function AgregarR() {
     Swal.fire({
       title: "Exito",
       text: "Código copiado correctamente",
-      icon: "success"
+      icon: "success",
+      heightAuto: false
     })
   };
 

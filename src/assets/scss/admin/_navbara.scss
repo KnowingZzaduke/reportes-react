@@ -5,9 +5,13 @@
   .navbar {
     height: 56px;
     background-color: v.$blanco;
+    position: fixed;
+    width: 100%;
+    border-bottom: 2px solid v.$negro;
     .content_navbar-superior {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+
       align-items: center;
       height: 100%;
       .navbar_left {
@@ -87,7 +91,7 @@
                 &:hover {
                   cursor: pointer;
                 }
-                p{
+                p {
                   display: none;
                 }
               }
@@ -160,23 +164,22 @@
 }
 
 //Versión responsive
-@include m.tablet{
-  .content_navbar-a{
-    .navbar{
-      .content_navbar-desplegable-d{
+@include m.tablet {
+  .content_navbar-a {
+    .navbar {
+      .content_navbar-desplegable-d {
         width: 200px;
       }
     }
   }
 }
 
-@include m.desktop{
-  .content_navbar-a{
-    .navbar{
-      .content_navbar-desplegable-d{
+@include m.desktop {
+  .content_navbar-a {
+    .navbar {
+      .content_navbar-desplegable-d {
         width: 250px;
       }
     }
   }
-  
 }

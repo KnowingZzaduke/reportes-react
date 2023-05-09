@@ -35,6 +35,7 @@ export function EliminarR() {
         title: "Error",
         text: "Error la pagina no envio datos",
         icon: "error",
+        heightAuto: false
       });
     } else {
       if (data.salida == "error") {
@@ -42,6 +43,8 @@ export function EliminarR() {
           title: "Error",
           text: data.data,
           icon: "error",
+          heightAuto: false
+
         });
       } else if (data.salida == "exito") {
         const nuevaFila = {
@@ -71,6 +74,7 @@ export function EliminarR() {
         title: "Error",
         text: "Error la pagina no envio datos",
         icon: "error",
+        heightAuto: false
       });
     } else {
       if (data.salida == "exito") {
@@ -78,6 +82,7 @@ export function EliminarR() {
           title: "Exito",
           text: "Reporte actualizado correctamente.",
           icon: "success",
+          heightAuto: false
         });
         setModal(false);
 
@@ -93,6 +98,7 @@ export function EliminarR() {
           title: "Error",
           text: "El reporte no pudo ser actualizado, Error:." + data.data,
           icon: "error",
+          heightAuto: false
         });
       }
     }
@@ -120,6 +126,7 @@ export function EliminarR() {
       showCancelButton: true,
       confirmButtonText: "Sí, bórralo",
       cancelButtonText: "Cancelar",
+      heightAuto: false
     }).then(async (result) => {
       if (result.isConfirmed) {
         // Aquí puedes definir la lógica para borrar el elemento
@@ -129,6 +136,7 @@ export function EliminarR() {
             title: "Error",
             text: "Error la pagina no envio datos",
             icon: "error",
+            heightAuto: false
           });
         } else {
           data = data.data;
@@ -137,12 +145,14 @@ export function EliminarR() {
               title: "Error",
               text: "El reporte no pudo ser borrado",
               icon: "error",
+              heightAuto: false
             });
           } else {
             Swal.fire({
               title: "Exito",
               text: data.data,
               icon: "success",
+              heightAuto: false
             });
             setDatos([]);
           }
