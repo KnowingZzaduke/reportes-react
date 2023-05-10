@@ -7,13 +7,14 @@ import "./assets/scss/app.scss";
 import { Signin } from "./routes/Principal/Signin";
 import { Signup } from "./routes/Principal/Signup";
 import { Usuarios } from "./routes/usuarios/Usuarios";
-import {Admin} from "./routes/admin/Administradores";
+import { Admin } from "./routes/admin/Administradores";
 import { DataContextProvider } from "./context/DataContext";
 import { Bienvenida } from "./routes/admin/Bienvenida";
 import { AgregarR } from "./routes/admin/AgregarR";
 import { EliminarR } from "./routes/admin/EliminarR";
 import { DetallesR } from "./routes/admin/DetallesR";
 import { Email } from "./routes/admin/Email";
+import { HOC } from "./components/validation/HOC";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,47 +22,62 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <Error/>
+    element: <Error />,
   },
   {
     path: "/signup",
-    element: <Signup/>
+    element: (
+      <HOC>
+        <Signup />
+      </HOC>
+    ),
   },
   {
     path: "/signin",
-    element: <Signin />,
+    element: (
+      <HOC>
+        <Signin />
+      </HOC>
+    ),
   },
   {
     path: "/usuarios",
-    element: <Usuarios />,
+    element: (
+      <HOC>
+        <Usuarios />
+      </HOC>
+    ),
   },
   {
-    path:  "/administradores",
-    element: <Admin/>,
+    path: "/administradores",
+    element: (
+      <HOC>
+        <Admin />
+      </HOC>
+    ),
     children: [
       {
         path: "/administradores/bienvenida",
-        element: <Bienvenida/>
+        element: <Bienvenida />,
       },
       {
-        path : "/administradores/agregar-reportes",
-        element: <AgregarR/>
+        path: "/administradores/agregar-reportes",
+        element: <AgregarR />,
       },
       {
         path: "/administradores/eliminar-reportes",
-        element: <EliminarR/>
+        element: <EliminarR />,
       },
       {
         path: "/administradores/detalles-reportes",
-        element: <DetallesR/>
+        element: <DetallesR />,
       },
       {
         path: "/administradores/formulario-email",
-        element: <Email/>
-      }
-    ]
-    
-  }
+        element: <Email />,
+      },
+    ],
+  },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

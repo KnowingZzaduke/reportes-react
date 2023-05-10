@@ -1,7 +1,6 @@
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 import { useContext, useEffect, useState } from "react";
-import { DataContext } from "../../context/DataContext";
 import Logo from "/img/Dysam.jpg";
 import { functions as fc } from "../../data/request";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,7 +8,6 @@ import { FaUserShield, FaRegPaperPlane } from "react-icons/fa";
 
 export function Signin() {
   const navigate = useNavigate();
-  const { validateSession } = useContext(DataContext);
 
   const [usuario, setUsuario] = useState("");
   const [contraseña, setContraseña] = useState("");
@@ -47,7 +45,10 @@ export function Signin() {
             iduser: data.iduser,
           };
           let cookkieD = fc.encryptData(decrytData);
-          Cookies.set("dyzam-app", cookkieD, { SameSite: "none", secure: true });
+          Cookies.set("dyzam-app", cookkieD, {
+            SameSite: "none",
+            secure: true,
+          });
 
           if (data.level === 0) {
             navigate("/administradores/bienvenida");
@@ -59,63 +60,48 @@ export function Signin() {
     }
   };
 
-  if (validateSession()) {
-    useEffect(() => {
-      const SESSION = Cookies.get("dyzam-app");
-      const SESSIONDECRYPT = fc.decryptdata(SESSION);
-  
-      if (SESSIONDECRYPT.level === 0) {
-        navigate("/administradores/bienvenida");
-      } else {
-        navigate("/usuarios");
-      }
-    }, [])
-  } else {
-    return (
-      <div className="content_formulario-ingreso">
-        <form onSubmit={handleSubmit}>
-          <div className="content_all-form">
-            <div className="content_logo">
-              <img src={Logo} />
-            </div>
-            <fieldset>
-              <div className="content_input">
-                <label>
-                  Correo
-                  <FaRegPaperPlane />
-                </label>
-                <input
-                  type="text"
-                  value={usuario}
-                  onChange={(e) => setUsuario(e.target.value)}
-                />
-              </div>
-              <div className="content_input">
-                <label>
-                  Contraseña
-                  <FaUserShield />
-                </label>
-                <input
-                  type="password"
-                  value={contraseña}
-                  onChange={(e) => setContraseña(e.target.value)}
-                />
-              </div>
-            </fieldset>
-            <div className="content_registro">
-              <Link to="/signup">No tienes cuenta?</Link>
-            </div>
-            <div className="content_boton">
-              <button>Enviar</button>
-            </div>
-            <div
-              className={`content_error-n ${error ? "content_error-d" : ""}`}
-            >
-              <p>Los campos no pueden ir vacíos</p>
-            </div>
+  return (
+    <div className="content_formulario-ingreso">
+      <form onSubmit={handleSubmit}>
+        <div className="content_all-form">
+          <div className="content_logo">
+            <img src={Logo} />
           </div>
-        </form>
-      </div>
-    );
-  }
+          <fieldset>
+            <div className="content_input">
+              <label>
+                Correo
+                <FaRegPaperPlane />
+              </label>
+              <input
+                type="text"
+                value={usuario}
+                onChange={(e) => setUsuario(e.target.value)}
+              />
+            </div>
+            <div className="content_input">
+              <label>
+                Contraseña
+                <FaUserShield />
+              </label>
+              <input
+                type="password"
+                value={contraseña}
+                onChange={(e) => setContraseña(e.target.value)}
+              />
+            </div>
+          </fieldset>
+          <div className="content_registro">
+            <Link to="/signup">No tienes cuenta?</Link>
+          </div>
+          <div className="content_boton">
+            <button>Enviar</button>
+          </div>
+          <div className={`content_error-n ${error ? "content_error-d" : ""}`}>
+            <p>Los campos no pueden ir vacíos</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
 }
