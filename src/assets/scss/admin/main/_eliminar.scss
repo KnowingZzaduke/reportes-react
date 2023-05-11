@@ -213,43 +213,41 @@
       &::-webkit-scrollbar-track {
         border-radius: 10px;
       }
-      table {
-        width: 100%;
-        thead {
-          tr {
-            th {
-              border-bottom: 1px solid v.$negro;
-              padding: 10px;
-            }
+
+      thead {
+        tr {
+          th {
+            padding: 10px;
+            border-bottom: 1px solid v.$negro;
           }
         }
-        tbody {
-          tr {
-            td {
-              padding: 10px;
-              text-align: center;
-              a {
-                svg {
-                  transition: 0.25s ease;
-                  &:hover {
-                    cursor: pointer;
-                    transform: scale(1.1);
-                  }
-                }
-              }
+      }
+      tbody {
+        tr {
+          td {
+            padding: 10px;
+            text-align: center;
+            a {
               svg {
                 transition: 0.25s ease;
-                font-size: 20px;
                 &:hover {
                   cursor: pointer;
                   transform: scale(1.1);
                 }
               }
             }
-            .opciones {
-              column-gap: 10px;
-              justify-content: center;
+            svg {
+              transition: 0.25s ease;
+              font-size: 20px;
+              &:hover {
+                cursor: pointer;
+                transform: scale(1.1);
+              }
             }
+          }
+          .opciones {
+            column-gap: 10px;
+            justify-content: center;
           }
         }
       }
@@ -292,15 +290,23 @@
         }
       }
     }
+    .content_buscador {
+      form {
+        width: 70%;
+        margin: 0% auto;
+      }
+    }
     .content_tabla-reportes {
-      overflow: hidden;
-      width: 100%;
-      .content_tabla {
-        display: flex;
+      margin: 3rem auto;
+      .content_titulo {
         justify-content: center;
-        width: 80%;
-        table {
-          width: 80%;
+      }
+      .tabla {
+        width: 70%;
+        margin: 0% auto;
+        border-radius: 5px;
+        th {
+          border: none;
         }
       }
     }

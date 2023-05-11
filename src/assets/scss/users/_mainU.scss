@@ -125,8 +125,7 @@
           }
 
           &::-webkit-scrollbar-button:increment
-
-          &::-webkit-scrollbar:horizontal {
+            &::-webkit-scrollbar:horizontal {
             height: 10px;
           }
 
@@ -139,30 +138,41 @@
           &::-webkit-scrollbar-track {
             border-radius: 10px;
           }
-          table {
-            thead {
-              tr {
-                th {
-                  border-bottom: 1px solid v.$negro;
-                  padding: 10px;
-                }
+
+          thead {
+            tr {
+              th {
+                border-bottom: 1px solid v.$negro;
+                padding: 10px;
               }
             }
-            tbody {
-              tr {
-                td {
-                  padding: 10px;
-                  text-align: center;
-                  a {
-                    svg {
-                      transition: 0.25s ease;
-                      &:hover {
-                        cursor: pointer;
-                        transform: scale(1.1);
-                      }
+          }
+          tbody {
+            tr {
+              td {
+                padding: 10px;
+                text-align: center;
+                a {
+                  svg {
+                    transition: 0.25s ease;
+                    &:hover {
+                      cursor: pointer;
+                      transform: scale(1.1);
                     }
                   }
                 }
+                svg {
+                  transition: 0.25s ease;
+                  font-size: 20px;
+                  &:hover {
+                    cursor: pointer;
+                    transform: scale(1.1);
+                  }
+                }
+              }
+              .opciones {
+                column-gap: 10px;
+                justify-content: center;
               }
             }
           }
@@ -198,7 +208,7 @@
       .content_reportes {
         .content_buscador {
           form {
-            width: 60%;
+            width: 70%;
             margin: 0% auto;
           }
         }
@@ -211,6 +221,9 @@
             width: 70%;
             margin: 0% auto;
             border-radius: 5px;
+            th {
+              border: none;
+            }
           }
         }
       }
@@ -239,9 +252,9 @@
           .content_titulo {
             justify-content: center;
           }
-          .tabla{
+          .tabla {
             width: 50%;
-            border: 5px;
+            border-radius: 5px;
           }
         }
       }
