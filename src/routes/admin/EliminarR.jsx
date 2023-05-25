@@ -55,7 +55,7 @@ export function EliminarR() {
         const nuevaFila = {
           id: data.id,
           date: data.date,
-          nombre: "http://127.0.0.1/api.php?file=" + data.file,
+          nombre: "/api.php?file=" + data.file,
           edad: data.comment,
         };
         setDatos([nuevaFila]);
@@ -63,7 +63,7 @@ export function EliminarR() {
           code: data.id,
           date: data.date,
           comment: data.comment,
-          nombre: "http://127.0.0.1/api.php?file=" + data.file,
+          nombre: "/api.php?file=" + data.file,
         });
       }
     }
@@ -94,7 +94,7 @@ export function EliminarR() {
         const nuevaFila = {
           id: formulario.code,
           date: formulario.date,
-          nombre: "http://127.0.0.1/api.php?file=" + formulario.code,
+          nombre: "/api.php?file=" + formulario.code,
           edad: formulario.comment,
         };
         setDatos([nuevaFila]);

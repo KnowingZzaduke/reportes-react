@@ -8,7 +8,7 @@ export const functions = {
         formData.append('password', password);
 
         try {
-            const response = await axios.post('http://127.0.0.1/api.php?action=login', formData);
+            const response = await axios.post('/api.php?action=login', formData);
             return response;
         } catch (error) {
             console.log(error);
@@ -22,7 +22,7 @@ export const functions = {
         formData.append('email', email);
 
         try {
-            const response = await axios.post('http://127.0.0.1/api.php?action=signup', formData);
+            const response = await axios.post('/api.php?action=signup', formData);
             return response;
         } catch (error) {
             console.log(error);
@@ -39,7 +39,7 @@ export const functions = {
             if (!form.id) {
                 form.id = "aleatoricode";
             }
-            return await axios.post('http://127.0.0.1/api.php?action=updateReport', formData);
+            return await axios.post('/api.php?action=updateReport', formData);
 
         } catch (error) {
             console.log(error);
@@ -56,7 +56,7 @@ export const functions = {
             if (!form.id) {
                 form.id = "aleatoricode";
             }
-            return await axios.post('http://127.0.0.1/api.php?action=makeReport', formData);
+            return await axios.post('/api.php?action=makeReport', formData);
 
         } catch (error) {
             console.log(error);
@@ -67,7 +67,7 @@ export const functions = {
         const formData = new FormData();
         formData.append('code', id);
         try {
-            return await axios.post("http://127.0.0.1/api.php?action=deleteReport", formData)
+            return await axios.post("/api.php?action=deleteReport", formData)
 
         } catch (error) {
             console.log(error);
@@ -78,7 +78,7 @@ export const functions = {
         try {
             const formData = new FormData();
             formData.append('code', id);
-            return await axios.post("http://127.0.0.1/api.php?action=getReports", formData)
+            return await axios.post("/api.php?action=getReports", formData)
         } catch (error) {
             console.log(error);
             return false;
